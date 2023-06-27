@@ -1,24 +1,15 @@
-# README
+# がんばるサイト
+## サイト概要
+何かしら頑張っている人が頑張ったことを投稿し、モチベーションを保つためのコミュニティサイト
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイトテーマ
+何かしらの目標や、日々努力をしている人達が、どんな小さなことでも、日々の頑張りを発信し、それを見た人が自分自身も頑張ろうと思い、『いいね』やコメントなどで、互いのモチベーションを保つことを目的としています。
+自分自身で頑張りたいことをリストとして登録し、達成できたら『頑張る！』から『頑張った！』へと変更し、マイページで自分の頑張りを見ることができ。
+他者の『頑張る！』『頑張った！』を見て、自分も頑張ろうという気持ちで、孤独を感じずに努力してほしいと思いこのサイトを作成しました。
+また、ランキングを表示させず、いいねとコメントの表示は取り組んでいることの詳細表示でのみ表示されるため、サイトにリンクした際やマイページにリンクした際、自己肯定感を否定されたと感じたり、むなしく感じたりすることのないように配慮しました。
 
-Things you may want to cover:
+## ターゲットユーザー
+日々努力をして、頑張っている人。一人暮らしの人。頑張っている人を見て、自分も頑張ろうと思いたい人。
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 主な利用シーン
+頑張りたい目標があり、頑張ろうと思っているモチベーションを保ちたいとき。自分一人ではやり遂げる自信がないときなど。
