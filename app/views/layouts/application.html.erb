@@ -1,35 +1,99 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ganbaru</title>
+    <title>がんばるサイト</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-    <% end %>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <span>がんばるサイト</span>
+          </a>
+         <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              
+              <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to user_path, class: 'nav-link text-light' do %>
+                  マイページ
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to action_path, class: 'nav-link text-light' do %>
+                  がんばる！
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to action_path, class: 'nav-link text-light' do %>
+                  がんばった！
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
+                  ログアウト
+                <% end %>
+              </li>
+                
+              <% elsif admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to admin_users_path, class: 'nav-link text-light' do %>
+                  利用者管理
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to admin_actions_path, class: 'nav-link text-light' do %>
+                  リスト管理
+                <% end %>
+              </li>
+              <li class="nav-item">
+                 <%= link_to admin_comments_path, class: 'nav-link text-light' do %>
+                  コメント管理
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-light' do %>
+                  ログアウト
+                <% end %>
+              </li>
+              
+              <% else %>
+              <li class="nav-item text-light">
+                  ようこそ！
+              </li>
+              <li class="nav-item">
+                <%= link_to about_path, class: 'nav-link text-light' do %>
+                  サイト説明
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
+                  新規登録
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
+                  ログイン
+                <% end %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+         </div>
+      </nav>
     </header>
     <main>
     <%= yield %>
     </main>
-     <footer>
-       
-     </footer>
+    <footer>
+    
+    </footer>
   </body>
 </html>
