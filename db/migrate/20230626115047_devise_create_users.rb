@@ -12,8 +12,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :email,              null: false, default: ""
       # パスワード
       t.string :encrypted_password, null: false, default: ""
-      # 自己紹介文
-      t.text :profile
 
       ## Recoverable
       t.string   :reset_password_token

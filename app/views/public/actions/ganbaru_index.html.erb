@@ -1,7 +1,7 @@
 <div class="container col-10">
     <div class="row">
         <div class="col-md-3">
-        <%= render 'users/list', user: @user, action: @action %>
+        <%= render 'public/users/list', user: @user, action: @action %>
         </div>
         <div class="col-md-8 offset-md-1">
         <h2>がんばる</h2>
@@ -14,7 +14,17 @@
                 </tr>
             </thead>
         <tbody>
-      <% @actions.each do |action| %>
+      <% @ganbaru_actions.each do |action| %>
+          <tr>
+            <td>
+                <%= link_to user_path(book.user) do %>
+                <%= %>
+                <% end %>
+            </td>
+            <td><%= action.content %></td>
+          </tr>
+       <% end %>
+       <% @ganbatta_actions.each do |action| %>
           <tr>
             <td>
                 <%= link_to user_path(book.user) do %>
