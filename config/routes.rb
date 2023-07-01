@@ -16,7 +16,12 @@ Rails.application.routes.draw do
  scope module: :public do  
    get '/' => 'homes#top'
    get 'homes/about' =>'homes#about', as: "about"
-   resources :actions, only: [:index, :show, :new, :update, :destroy] #取り組み 
+   resources :actions, only: [:index, :show, :new, :update, :destroy] do#取り組み d
+    collection do
+        get :ganbaru
+        get :ganbatta
+    end
+   end
    resources :users, only: [:show, :edit, :update] # ユーザー
    resources :favorites, only: [:create, :index, :destroy] #お気に入り
    resources :comments, only: [:create] #コメント

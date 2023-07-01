@@ -1,30 +1,20 @@
 <div class="container col-10">
     <div class="row">
         <div class="col-md-3">
-        <%= render 'public/users/list', user: @user, action: @action %>
+        <%= render 'public/users/list', user: current_user, action: @action %><%# userでcuent_userを渡した%>
         </div>
         <div class="col-md-8 offset-md-1">
-        <h2>がんばる</h2>
+        <h2>がんばった</h2>
             <table class="table table-hover table-inveres">
             <thead>
                 <tr>
                     <th>日付</th>
-                    <th>がんばる！　リスト</th>
+                    <th>がんばった！　リスト</th>
                     <th></th>
                 </tr>
             </thead>
         <tbody>
-      <% @ganbaru_actions.each do |action| %>
-          <tr>
-            <td>
-                <%= link_to user_path(book.user) do %>
-                <%= %>
-                <% end %>
-            </td>
-            <td><%= action.content %></td>
-          </tr>
-       <% end %>
-       <% @ganbatta_actions.each do |action| %>
+       <% @ganbatta.each do |action| %>
           <tr>
             <td>
                 <%= link_to user_path(book.user) do %>

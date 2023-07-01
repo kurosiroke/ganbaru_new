@@ -5,18 +5,41 @@ class Public::ActionsController < ApplicationController
     # belongs_to :users
     
     def index
-         @user = current_user
+        @user = curren_user
+        @ganbaru = Action.all.ganbaru # がんばるりすと
+        @ganbatta = Action.all.ganbatta # がんばったリスト
     end
     
     def ganbaru
-        @ganbaru_actions = Action.all.ganbaru # がんばるりすと
+        @user = current_user
+        @action = Action.new #newを表示させるため
+        @ganbaru = Action.all.ganbaru # がんばるりすと
     end
-    
+       
     def ganbatta
-        @ganbatta_actions = Action.all.ganbatta
+        @user = current_user
+        @action = Action.new
+        @ganbatta = Action.all.ganbatta # がんばったリスト
     end
-        
     def show
         @user = current_user
     end 
+    
+    def new
+        @user = current_user
+    end
+    
+    def edit
+        @user = current_user
+    end
+    
+    
+    
+   
+    private
+    
+    def action_params
+        params.require(:action).permit(:content)
+    end
+ 
 end
