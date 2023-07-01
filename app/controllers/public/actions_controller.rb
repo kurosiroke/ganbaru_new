@@ -5,7 +5,7 @@ class Public::ActionsController < ApplicationController
     # belongs_to :users
     
     def index
-        @user = curren_user
+        @user = current_user
         @ganbaru = Action.all.ganbaru # がんばるりすと
         @ganbatta = Action.all.ganbatta # がんばったリスト
     end
@@ -14,6 +14,7 @@ class Public::ActionsController < ApplicationController
         @user = current_user
         @action = Action.new #newを表示させるため
         @ganbaru = Action.all.ganbaru # がんばるりすと
+        #byebug
     end
        
     def ganbatta
@@ -21,6 +22,7 @@ class Public::ActionsController < ApplicationController
         @action = Action.new
         @ganbatta = Action.all.ganbatta # がんばったリスト
     end
+    
     def show
         @user = current_user
     end 
@@ -33,13 +35,21 @@ class Public::ActionsController < ApplicationController
         @user = current_user
     end
     
-    
+    def create
+        @user = current_user
+        #byebug
+        @action = Action.new(action_params)
+        @action.save
+        #byebug
+        redirect_to ganbaru_actions_path 
+    end
     
    
     private
     
     def action_params
-        params.require(:action).permit(:content)
+        #byebug
+        params.permit(:content)
     end
  
 end

@@ -14,20 +14,20 @@
                 </tr>
             </thead>
         <tbody>
-      <% @ganbaru_actions.each do |action| %>
+      <% @ganbaru.each do |action| %>
           <tr>
             <td>
-                <%= link_to user_path(book.user) do %>
+                <%= link_to user_path(current_user) do %>
                 <%= %>
                 <% end %>
             </td>
             <td><%= action.content %></td>
           </tr>
        <% end %>
-       <% @ganbatta_actions.each do |action| %>
+       <% @ganbatta.each do |action| %>
           <tr>
             <td>
-                <%= link_to user_path(book.user) do %>
+                <%= link_to user_path(current_user) do %>
                 <%= %>
                 <% end %>
             </td>

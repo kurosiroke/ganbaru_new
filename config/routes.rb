@@ -16,7 +16,7 @@ Rails.application.routes.draw do
  scope module: :public do  
    get '/' => 'homes#top'
    get 'homes/about' =>'homes#about', as: "about"
-   resources :actions, only: [:index, :show, :new, :update, :destroy] do#取り組み d
+   resources :actions, only: [:index, :show, :new, :update, :create, :destroy] do#取り組み d
     collection do
         get :ganbaru
         get :ganbatta

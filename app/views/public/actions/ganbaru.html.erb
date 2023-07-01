@@ -18,7 +18,7 @@
             <tr>
                 <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
                 <td>
-                    <%= link_to user_path(book.user) do %>
+                    <%= link_to user_path(current_user) do %>
                     <%= %>
                     <% end %>
                 </td>
