@@ -37,18 +37,16 @@ class Public::ActionsController < ApplicationController
     
     def create
         @user = current_user
-        #byebug
-        @action = Action.new(action_params)
+        @action = current_user.actions.build(action_params) # actionの指定と保存
+        @action.part = 'ganbaru' #newで作成時はpartをがんばるに指定
         @action.save
-        #byebug
-        redirect_to ganbaru_actions_path 
+        redirect_to ganbaru_actions_path #がんばるリストに移動する
     end
     
    
     private
     
     def action_params
-        #byebug
         params.permit(:content)
     end
  

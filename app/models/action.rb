@@ -1,9 +1,9 @@
 class Action < ApplicationRecord
     has_many :favorites
     has_many :comments
-    belongs_to :users
+    belongs_to :user
   
-  #num part: { ganbaru: 0, ganbatta: 1 } 
+  enum part: { ganbaru: 0, ganbatta: 1 } 
   
 
 end

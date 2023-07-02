@@ -7,6 +7,13 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :comments
   has_many :actions 
-
-   
+  
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      # user.confirmed_at = Time.now
+      user.name = "ゲスト"
+      # name を入力必須のため "ゲスト" と表示
+    end
+  end
 end
