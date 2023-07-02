@@ -24,9 +24,9 @@
                     <% end %>
                 </td>
                 <td>
-                    <%= link_to @user do %>
-                    <%= @user.name %></td>
-                    <% end %>
+                    <%#= link_to 「パスを指定する」 do %>
+                    <%= action.user.name %></td>
+                    <%# end %>
                 <td> 
                     <% if @action.user == current_user %>
                     <%= link_to "削除", action_path, method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>

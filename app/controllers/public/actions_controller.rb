@@ -40,7 +40,7 @@ class Public::ActionsController < ApplicationController
         @action = current_user.actions.build(action_params) # actionの指定と保存
         @action.part = 'ganbaru' #newで作成時はpartをがんばるに指定
         @action.save
-        redirect_to ganbaru_actions_path #がんばるリストに移動する
+        redirect_to ganbaru_actions_path #がんばるリストに移動
     end
     
    

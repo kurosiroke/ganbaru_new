@@ -4,17 +4,31 @@ class Public::UsersController < ApplicationController
     
     def index
         @users = User.all
+        @action = Action.new
+        @ganbaru = Action.all.ganbaru
+        @ganbatta = Action.all.ganbatta 
     end
     
     def show
         @user = current_user
+        @action = Action.new
+        @ganbaru = Action.all.ganbaru.order('id DESC').limit(3)        # ASCだと古い順でDESCで新着順です。
+        @ganbatta = Action.all.ganbatta.order('id DESC').limit(3) 
     end 
     
     def edit
         @user = current_user
-       #@user = user.find(params[:id])
+        @ganbaru = Action.all.ganbaru
+        @ganbatta = Action.all.ganbatta 
     end
     
+    def my_ganbaru
+        @actions = Action.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+    end
+    
+    def my_ganbatta
+        @actions = Action.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+    end
     
     def update
         #@user = current_user
@@ -27,7 +41,7 @@ class Public::UsersController < ApplicationController
     private
     
     def user_params
-        params.require(:user).permit(:name, :profile)
+        params.require(:user).permit(:name, :profile, :part)
     end
 
 end

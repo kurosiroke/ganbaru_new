@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
   
    root to: 'public/homes#top'
-   
-   # ゲストログイン
-  devise_scope :user do
-    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
-  end
+ 
   # 管理者
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
@@ -15,6 +11,10 @@ Rails.application.routes.draw do
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
+   # ゲストログイン
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
   # 利用者
  scope module: :public do  
@@ -24,9 +24,11 @@ Rails.application.routes.draw do
     collection do
         get :ganbaru
         get :ganbatta
+        get :my_ganbaru
+        get :my_ganbatta
     end
    end
-   resources :users, only: [:show, :edit, :update] # ユーザー
+   resources :users, only: [:show, :edit, :update] # ユーザーdo
    resources :favorites, only: [:create, :index, :destroy] #お気に入り
    resources :comments, only: [:create] #コメント
 end
