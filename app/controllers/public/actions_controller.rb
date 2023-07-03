@@ -33,6 +33,7 @@ class Public::ActionsController < ApplicationController
     
     def show
         @user = User.find params[:id]
+        @action = Action.all
     end 
     
     def edit
@@ -56,7 +57,7 @@ class Public::ActionsController < ApplicationController
     private
     
     def action_params
-        params.permit(:content)
+        params.permit(:content, :created_at)
     end
  
 end

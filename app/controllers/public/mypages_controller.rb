@@ -1,4 +1,4 @@
-class Public::MypagesActionsController < ApplicationController
+class Public::MypagesController < ApplicationController
     
     #before_action :current_user, only: [:edit, :update]
 

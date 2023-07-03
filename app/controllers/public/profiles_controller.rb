@@ -8,7 +8,13 @@ class Public::ProfilesController < ApplicationController
         @user = current_user
         #@user = User.find(current_user.id)
         @user.update(user_params)
-        redirect_to user_path
+        redirect_to mypage_path(@user)
     end
     
+    
+    private
+    
+    def user_params
+        params.require(:user).permit(:profile)
+    end
 end

@@ -4,12 +4,12 @@
         <%#= render 'public/users/list', user: current_user, action: @action %>
         <!--</div>-->
         <div class="col-md-8 offset-md-1">
-        <h2>がんばる</h2>
+        <h2>みんなのがんばる！</h2>
             <table class="table table-hover table-inveres">
             <thead>
                 <tr>
                     <th>日付</th>
-                    <th>がんばる！　リスト</th>
+                    <th>がんばるリスト</th>
                     <th>投稿者</th>
                     <th></th>
                 </tr>
@@ -24,9 +24,9 @@
                     <% end %>
                 </td>
                 <td>
-                    <%#= link_to 「パスを指定する」 do %>
+                    <%= link_to @user do %>
                     <%= action.user.name %></td>
-                    <%# end %>
+                    <% end %>
                 <td> 
                     <% if @action.user == current_user %>
                     <%= link_to "削除", action_path, method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>

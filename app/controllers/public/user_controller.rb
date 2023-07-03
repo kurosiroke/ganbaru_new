@@ -3,6 +3,6 @@ class Public::UsersController < ApplicationController
     end
     
     def index
-        
-
+    end
+    
 end
