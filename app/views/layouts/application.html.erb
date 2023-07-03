@@ -22,7 +22,7 @@
               
               <% if user_signed_in? %>
               <li class="nav-item">
-                <%= link_to user_path(current_user), class: 'nav-link text-light' do %>
+                <%= link_to user_action_path(current_user), class: 'nav-link text-light' do %>
                   マイページ
                 <% end %>
               </li>

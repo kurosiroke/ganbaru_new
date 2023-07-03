@@ -28,7 +28,19 @@ Rails.application.routes.draw do
         get :my_ganbatta
     end
    end
-   resources :users, only: [:show, :edit, :update] # ユーザーdo
+   resources :mypages, only: [:show] do# ユーザーdo
+    collection do
+        get :ganbaru
+        get :ganbatta
+    end
+   end
+   resources :profiles, only: [:edit,:update]
+   resources :users, only: [:show] do
+    collection do
+        get :ganbaru
+        get :ganbatta
+    end   
+   end
    resources :favorites, only: [:create, :index, :destroy] #お気に入り
    resources :comments, only: [:create] #コメント
 end

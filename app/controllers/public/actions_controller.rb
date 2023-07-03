@@ -23,16 +23,20 @@ class Public::ActionsController < ApplicationController
         @ganbatta = Action.all.ganbatta # がんばったリスト
     end
     
-    def show
-        @user = current_user
-    end 
-    
-    def new
-        @user = current_user
+    def my_ganbaru
+         @actions = Action.where(user_id: current_user.id).includes(:user).order("created_at DESC")
     end
     
+    def my_ganbatta
+         @actions = Action.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+    end
+    
+    def show
+        @user = User.find params[:id]
+    end 
+    
     def edit
-        @user = current_user
+        @user = User.find params[:id]
     end
     
     def create
@@ -43,6 +47,11 @@ class Public::ActionsController < ApplicationController
         redirect_to ganbaru_actions_path #がんばるリストに移動
     end
     
+    def update
+    end
+    
+    def destroy
+    end
    
     private
     
