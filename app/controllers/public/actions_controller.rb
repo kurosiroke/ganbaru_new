@@ -1,9 +1,5 @@
 class Public::ActionsController < ApplicationController
     
-    # has_many :favorites
-    # has_many :comments
-    # belongs_to :users
-    
     def index
         @user = current_user
         @ganbaru = Action.all.ganbaru # がんばるりすと
@@ -31,6 +27,7 @@ class Public::ActionsController < ApplicationController
     
     def my_ganbatta
         @actions = Action.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+        @action = Action.all.ganbatta
     end
     
     def show
@@ -46,13 +43,19 @@ class Public::ActionsController < ApplicationController
         @action = current_user.actions.build(action_params) # actionの指定と保存
         @action.part = 'ganbaru' #newで作成時はpartをがんばるに指定
         @action.save
-        redirect_to ganbaru_actions_path #がんばるリストに移動
+        redirect_to my_ganbaru_actions_path #myがんばるリストに移動
     end
     
     def update
+        @action = action.find(params[:id])
+        @action.update(action_params)
+        redirect_to action_path
     end
     
     def destroy
+        action = Action.find(params[:id])
+        action.destroy
+        redirect_to  my_ganbaru_actions_path
     end
    
     private

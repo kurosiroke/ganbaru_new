@@ -15,7 +15,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <% @ganbaru.each do |action| %>
+                    <% @ganbarus.each do |action| %>
                     <tr>
                         <td><%= action.created_at.strftime('%Y/%m/%d') %></td>
                         <td>
@@ -24,7 +24,7 @@
                             <% end %>
                         </td>
                         <td> 
-                            <%= link_to "削除", action_path, method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
+                            <%= link_to "削除", action_path(action.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
                         </td>
                     </tr>
                     <% end %>
@@ -38,17 +38,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <% @ganbatta.each do |action| %>
+                        <% @ganbattas.each do |action| %>
                             <tr>
-                                <td><%= action.created_at.strftime('%Y/%m/%d') %></td>
+                                <td><%= ganbatta.created_at.strftime('%Y/%m/%d') %></td>
                                 <td>
-                                    <%= link_to action_path(action.id) do %>
+                                    <%= link_to actions.path(action.id) do %>
                                     <%= action.content %>
                                     <% end %>
                                 </td>
                                 <td> 
                                     <% if @action.user == current_user %>
-                                    <%= link_to "削除", action_path, method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
+                                    <%= link_to "削除", action_path(action.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
                                     <% end %>
                                 </td>
                             </tr>
