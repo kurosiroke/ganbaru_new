@@ -3,10 +3,10 @@ class Public::MypagesController < ApplicationController
     #before_action :current_user, only: [:edit, :update]
 
     def show
-        @user = current_user
-        #@action = Action.new
-        @ganbaru = Action.all.ganbaru.order('id DESC').limit(3)        # ASCだと古い順でDESCで新着順です。
-        @ganbatta = Action.all.ganbatta.order('id DESC').limit(3) 
+        @user = User.find params[:id]
+        @action = Action.find params[:id]
+        @ganbaru = current_user.actions.ganbaru.order('id DESC').limit(3)        # ASCだと古い順でDESCで新着順です。
+        @ganbatta = current_user.actions.ganbatta.order('id DESC').limit(3) #ログインしているユーザーの一覧
     end 
     
     def ganbaru_index

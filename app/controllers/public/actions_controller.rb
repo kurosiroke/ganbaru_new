@@ -24,20 +24,21 @@ class Public::ActionsController < ApplicationController
     end
     
     def my_ganbaru
-         @actions = Action.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+        @actions = Action.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+        @action = Action.all.ganbaru
+        
     end
     
     def my_ganbatta
-         @actions = Action.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+        @actions = Action.where(user_id: current_user.id).includes(:user).order("created_at DESC")
     end
     
     def show
-        @user = User.find params[:id]
-        @action = Action.all
+        @action = Action.find(params[:id])#ユーザーの投稿のshowを表示する
     end 
     
     def edit
-        @user = User.find params[:id]
+        @action = Action.find(params[:id])
     end
     
     def create
