@@ -15,18 +15,6 @@ class Public::MypagesController < ApplicationController
     def ganbaru_index
     end
     
-    # def edit
-    #     @ganbaru = Action.all.ganbaru
-    #     @ganbatta = Action.all.ganbatta 
-    # end
-    
-    # def update
-    #     @action = action.find(params[:id])
-    #     @action.update(action_params)
-    #     redirect_to action_path
-    # end
-
-
     private
     
     def user_params

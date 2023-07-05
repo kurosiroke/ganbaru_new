@@ -3,12 +3,12 @@
     <div class="text-center">
         <h2>一人じゃない！　みんながんばってる！</h2>
     </div>
-        <div>新着&emsp;みんなのがんばる！</div>
+        <div>新着順</div>
         <table class="table table-hover table-inveres">
             <thead>
                 <tr>
                     <th>日付</th>
-                    <th>がんばるリスト</th>
+                    <th>がんばること！</th>
                     <th>投稿者</th>
                     <th></th>
                 </tr>
@@ -31,5 +31,38 @@
             <% end %>
             </tbody>
         </tabel>
+        <div>
+            <%# if @user == current_user %>
+             <%= link_to ganbaru_actions_path do %>
+                  みんなのがんばる！一覧
+             <% end %>
+            <%# end %>
+        </div>
+        <table class="table table-hover table-inveres">
+            <thead>
+                <tr>
+                    <th>日付</th>
+                    <th>がんばったこと!</th>
+                    <th>投稿者</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            <% @ganbatta.each do |action| %>
+            <tr>
+                <td><%= action.created_at.strftime('%Y/%m/%d') %></td>
+                <td>
+                    <%= link_to action_path(action.id) do %>
+                    <%= action.content %>
+                    <% end %>
+                </td>
+                <td>
+                    <%= link_to @user do %>
+                    <%= action.user.name %></td>
+                    <% end %>
+                </td>
+            </tr>
+            <% end %>
+            </tbody>
 </div>
 

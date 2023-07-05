@@ -9,24 +9,21 @@ class Public::ActionsController < ApplicationController
     def ganbaru
         @user = current_user
         @action = Action.new #newを表示させるため
-        @ganbaru = Action.all.ganbaru # がんばるりすと
-        #byebug
+        @ganbaru = Action.all.ganbaru.order("created_at DESC").limit(8) # がんばるりすと 新着順
     end
        
     def ganbatta
         @user = current_user
         @action = Action.new
-        @ganbatta = Action.all.ganbatta # がんばったリスト
+        @ganbatta = Action.all.ganbatta.order("created_at DESC").limit(8) # がんばったリスト 新着順
     end
     
     def my_ganbaru
-        @actions = Action.where(user_id: current_user.id).includes(:user).order("created_at DESC")
         @action = Action.all.ganbaru
         
     end
     
     def my_ganbatta
-        @actions = Action.where(user_id: current_user.id).includes(:user).order("created_at DESC")
         @action = Action.all.ganbatta
     end
     
