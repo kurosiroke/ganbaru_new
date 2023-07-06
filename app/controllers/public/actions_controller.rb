@@ -19,12 +19,12 @@ class Public::ActionsController < ApplicationController
     end
     
     def my_ganbaru
-        @action = Action.all.ganbaru
+        @action = Action.all.ganbaru.order("created_at DESC").limit(8)
         
     end
     
     def my_ganbatta
-        @action = Action.all.ganbatta
+        @action = Action.all.ganbatta.order("created_at DESC").limit(8)
     end
     
     def show
@@ -37,7 +37,7 @@ class Public::ActionsController < ApplicationController
     
     def create
         @user = current_user
-        @action = current_user.actions.build(action_params) # actionの指定と保存
+        @action = current_user.actions.build(action_params) # actionの指定と保存を行う
         @action.part = 'ganbaru' #newで作成時はpartをがんばるに指定
         @action.save
         redirect_to my_ganbaru_actions_path #myがんばるリストに移動

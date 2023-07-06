@@ -9,23 +9,24 @@
                 <label for="action content">取り組みリストの編集</label>
                 <%= f.text_area :content, class: 'form-control content', id: "action_content" %>
             </div>
-            <div>
-            <%= form_with model: @action, url: action_path, method: :post, local: true do |f| %> 
-              <div>
-                &emsp;&emsp;<%= f.radio_button :action, "ganbaru", checked: true %>
-                <%= f.label :action_ganbaru, "がんばる！" %>
-                &emsp;&emsp;<%= f.radio_button :action, "ganbatta" %>
-                <%= f.label :action_ganbatta, "がんばった！" %>
-              </div><br>
-            <% end %>
+            <div class="row">
+              <!--ラジオボタンの中央寄せ-->
+              <div class="col text-center">
+                <%= form_with model: @action, url: action_path, method: :post, local: true do |f| %> <!--actionの編集-->
+                  <div>
+                    <%= f.radio_button :action, "ganbaru", checked: true %>
+                    <%= f.label :action_ganbaru, "がんばる！" %>
+                    &emsp;<%= f.radio_button :action, "ganbatta" %>
+                    <%= f.label :action_ganbatta, "がんばった！" %>
+                  </div><br>
+                <% end %>
+              </div>
             </div>
             <p>※&emsp;犯罪に巻き込まれるような投稿はお控えください。</p>
-            <div class="container mt-4">
-                <div class="row justify-content-center">
-                    <div class="col-6">
-                       <%= f.submit "確認画面へ進む", class: 'btn btn-sm btn-primary ml-4' %>
-                    </div>
-                </div>
+            <div class="row">
+              <div class="col text-center"> <!--ボタンを中央に移動させる-->
+                  <%= f.submit "確認画面へ進む", class: 'btn btn-sm btn-primary ml-4' %>
+              </div>
             </div>
           <% end %>
           </div>
