@@ -20,7 +20,7 @@ Rails.application.routes.draw do
  scope module: :public do  
    get '/' => 'homes#top'
    get 'homes/about' =>'homes#about', as: "about"
-   resources :actions, only: [:index, :show, :edit, :new, :update, :create, :destroy] do#取り組み 
+   resources :attempts, only: [:index, :show, :edit, :new, :update, :create, :destroy] do#取り組み 
     collection do
         get :ganbaru #がんばるアクション
         get :ganbatta#がんばったアクション
@@ -42,15 +42,15 @@ Rails.application.routes.draw do
     end   
    end
    resources :favorites, only: [:create, :index, :destroy] #お気に入り
-   resources :comments, only: [:create] #コメント
+   resources :speeches, only: [:create] #コメント
 end
 
   # 管理者
  namespace :admin do
    get '/' => 'homes#top'
-   resources :actions, only: [:index, :destroy]
+   resources :attempts, only: [:index, :destroy]
    resources :users, only: [:index, :destroy]
-   resources :comments, only: [:index, :destroy]
+   resources :speeches, only: [:index, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
 end

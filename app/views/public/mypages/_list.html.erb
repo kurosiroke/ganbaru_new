@@ -15,7 +15,7 @@
     <% end %>
 </div>
 <h5 class="mt-3">がんばること</h5>
-<%= form_with url: actions_path, method: :post do |f| %>
+<%= form_with model: attempt, url: attempts_path, method: :post do |f| %>
     <%= f.text_area :content %><br>
     <%= f.submit "投稿", class: "btn btn-success btn-default btn-sm" %>
 <% end %>

@@ -4,7 +4,7 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h2>取り組みリストの編集</h2>
           <div class="col-8">
-          <%= form_with model: @action, url: action_path(@action.id) do |f| %>
+          <%= form_with model: @action, url: gaction_path(@action.id), method: :patch, local: true do |f| %>
             <div class="form-group">
                 <label for="action content">取り組みリストの編集</label>
                 <%= f.text_area :content, class: 'form-control content', id: "action_content" %>
@@ -12,14 +12,12 @@
             <div class="row">
               <!--ラジオボタンの中央寄せ-->
               <div class="col text-center">
-                <%= form_with model: @action, url: action_path, method: :post, local: true do |f| %> <!--actionの編集-->
                   <div>
-                    <%= f.radio_button :action, "ganbaru", checked: true %>
-                    <%= f.label :action_ganbaru, "がんばる！" %>
-                    &emsp;<%= f.radio_button :action, "ganbatta" %>
-                    <%= f.label :action_ganbatta, "がんばった！" %>
+                    <%= f.radio_button :part, "ganbaru", checked: true %>
+                    <%= f.label :gaction_ganbaru, "がんばる！" %>
+                    &emsp;<%= f.radio_button :part, "ganbatta" %>
+                    <%= f.label :gaction_ganbatta, "がんばった！" %>
                   </div><br>
-                <% end %>
               </div>
             </div>
             <p>※&emsp;犯罪に巻き込まれるような投稿はお控えください。</p>

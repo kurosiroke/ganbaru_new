@@ -12,21 +12,21 @@
                 </tr>
             </thead>
             <tbody>
-            <% @ganbaru.each do |action| %>
+            <% @ganbaru.each do |attempt| %>
             <tr>
-                <td><%= action.created_at.strftime('%Y/%m/%d') %></td>
+                <td><%= attempt.created_at.strftime('%Y/%m/%d') %></td>
                 <td>
-                    <%= link_to action_path(action.id) do %>
-                    <%= action.content %>
+                    <%= link_to attempt_path(attempt.id) do %>
+                    <%= attempt.content %>
                     <% end %>
                 </td>
                 <td>
                     <%= link_to @user do %>
-                    <%= action.user.name %></td>
+                    <%= attempt.user.name %></td>
                     <% end %>
                 <td> 
-                    <% if action.user == current_user %>
-                    <%= link_to "削除", action_path(action.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
+                    <% if attempt.user == current_user %>
+                    <%= link_to "削除", attempt_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
                     <% end %>
                 </td>
             </tr>

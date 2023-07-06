@@ -12,14 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2023_07_01_122433) do
 
-  create_table "actions", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "content", null: false
-    t.integer "part"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -32,13 +24,21 @@ ActiveRecord::Schema.define(version: 2023_07_01_122433) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.string "comment", null: false
+  create_table "attempts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "content", null: false
+    t.integer "part"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "favorites", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "speeches", force: :cascade do |t|
+    t.string "speech", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

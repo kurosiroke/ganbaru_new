@@ -4,9 +4,9 @@ class Public::MypagesController < ApplicationController
 
     def show
         @user = User.find(params[:id])
-        @action = @user.actions
-        @ganbarus = current_user.actions.ganbaru.order('id DESC').limit(3)        # ASCだと古い順でDESCで新着順です。
-        @ganbattas = current_user.actions.ganbatta.order('id DESC').limit(3) #ログインしているユーザーの一覧
+        @attempt = @user.attempts
+        @ganbarus = current_user.attempts.ganbaru.order('id DESC').limit(3)        # ASCだと古い順でDESCで新着順です。
+        @ganbattas = current_user.attempts.ganbatta.order('id DESC').limit(3) #ログインしているユーザーの一覧
     end 
     
     def ganbaru_index

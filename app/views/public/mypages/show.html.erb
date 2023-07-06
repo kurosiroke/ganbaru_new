@@ -1,7 +1,7 @@
 <div class="container col-10">
     <div class="row">
         <div class="col-3">
-        <%= render 'public/mypages/list', user: @user, action: @action %>
+        <%= render 'public/mypages/list', user: @user, attempt: @attempt %>
         </div>
         <div class="container col-9">
             <div class="row">
@@ -9,22 +9,22 @@
                     <table class="table table-hover table-inveres">
                     <thead>
                         <tr>
-                            <th><%= link_to "がんばること一覧",  my_ganbaru_actions_path %></th>
+                            <th><%= link_to "がんばること一覧",  my_ganbaru_attempts_path %></th>
                             <th></th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                    <% @ganbarus.each do |action| %>
+                    <% @ganbarus.each do |attempt| %>
                     <tr>
-                        <td><%= action.created_at.strftime('%Y/%m/%d') %></td>
+                        <td><%= attempt.created_at.strftime('%Y/%m/%d') %></td>
                         <td>
-                            <%= link_to action_path(action.id) do %>
-                            <%= action.content %>
+                            <%= link_to attempt_path(attempt.id) do %>
+                            <%= attempt.content %>
                             <% end %>
                         </td>
                         <td> 
-                            <%= link_to "削除", action_path(action.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
+                            <%= link_to "削除", attempt_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
                         </td>
                     </tr>
                     <% end %>
@@ -32,24 +32,22 @@
                         <table class="table table-hover table-inveres">
                         <thead>
                             <tr>
-                                <th><%= link_to "がんばったこと一覧", my_ganbatta_actions_path %></th>
+                                <th><%= link_to "がんばったこと一覧", my_ganbatta_attempts_path %></th>
                                 <th></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                        <% @ganbattas.each do |action| %>
+                        <% @ganbattas.each do |attempt| %>
                             <tr>
-                                <td><%= ganbatta.created_at.strftime('%Y/%m/%d') %></td>
+                                <td><%= attempt.created_at.strftime('%Y/%m/%d') %></td>
                                 <td>
-                                    <%= link_to actions.path(action.id) do %>
-                                    <%= action.content %>
+                                    <%= link_to attempt_path(attempt.id) do %>
+                                    <%= attempt.content %>
                                     <% end %>
                                 </td>
                                 <td> 
-                                    <% if @action.user == current_user %>
-                                    <%= link_to "削除", action_path(action.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
-                                    <% end %>
+                                    <%= link_to "削除", attempt_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
                                 </td>
                             </tr>
                         <% end %>
