@@ -46,7 +46,7 @@ class Public::AttemptsController < ApplicationController
     def update
         #byebug
         @attempt = Attempt.find(params[:id])
-        @attempt.update(gaction_params)
+        @attempt.update(attempt_params)
         redirect_to ganbatta_attempts_path
     end
     

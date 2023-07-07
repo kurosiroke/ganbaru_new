@@ -4,7 +4,7 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h2>取り組みリストの編集</h2>
           <div class="col-8">
-          <%= form_with model: @action, url: gaction_path(@action.id), method: :patch, local: true do |f| %>
+          <%= form_with model: @attempt, url: attempt_path(@attempt.id), method: :patch, local: true do |f| %>
             <div class="form-group">
                 <label for="action content">取り組みリストの編集</label>
                 <%= f.text_area :content, class: 'form-control content', id: "action_content" %>
@@ -14,9 +14,9 @@
               <div class="col text-center">
                   <div>
                     <%= f.radio_button :part, "ganbaru", checked: true %>
-                    <%= f.label :gaction_ganbaru, "がんばる！" %>
+                    <%= f.label :attempt_ganbaru, "がんばる！" %>
                     &emsp;<%= f.radio_button :part, "ganbatta" %>
-                    <%= f.label :gaction_ganbatta, "がんばった！" %>
+                    <%= f.label :attempt_ganbatta, "がんばった！" %>
                   </div><br>
               </div>
             </div>
