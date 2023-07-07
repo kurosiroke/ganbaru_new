@@ -65,5 +65,12 @@
     <% end %>
     </tbody>
   </table>
+  <div>
+    <% if user_signed_in? %>
+      <%= link_to ganbaru_attempts_path do %>
+        みんなのがんばる！一覧
+      <% end %>
+    <% end %>
+  </div>
 </div>
 

@@ -58,7 +58,7 @@ class Public::AttemptsController < ApplicationController
    
     private
     
-    def gaction_params
+    def attempt_params
         #params.permit(:content, :created_at)
         params.require(:attempt).permit(:content, :part)
     end
