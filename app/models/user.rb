@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
         
   has_many :attempts
-        
+  has_many :speechs, dependent: :destroy #コメントの設定。削除されたら削除
   
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
