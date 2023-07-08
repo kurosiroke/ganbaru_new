@@ -22,6 +22,10 @@
               
               <% if user_signed_in? %>
               <li class="nav-item">
+                <%= link_to search_path(current_user), class: 'nav-link text-light' do %>
+                  検索
+                <% end %>
+              <li class="nav-item">
                 <%= link_to mypage_path(current_user), class: 'nav-link text-light' do %>
                   マイページ
                 <% end %>
