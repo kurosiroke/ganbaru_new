@@ -4,8 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
         
-  has_many :attempts
+  has_many :attempts, dependent: :destroy #取り組みの設定　削除されたら削除
   has_many :speeches, dependent: :destroy #コメントの設定。削除されたら削除
+  has_many :favorites, dependent: :destroy #お気に入り　削除されたら
   
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
@@ -15,4 +16,19 @@ class User < ApplicationRecord
       # name を入力必須のため "ゲスト" と表示
     end
   end
+  
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @user = User.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @user = User.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @user = User.where("name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
+  end
+
 end

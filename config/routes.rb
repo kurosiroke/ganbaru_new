@@ -20,6 +20,7 @@ Rails.application.routes.draw do
  scope module: :public do  
    get '/' => 'homes#top'
    get 'homes/about' =>'homes#about', as: "about"
+   get "search" => "searches#search"
    resources :attempts, only: [:index, :show, :edit, :new, :update, :create, :destroy] do#取り組み 
     collection do
         get :ganbaru #がんばるアクション
@@ -29,22 +30,27 @@ Rails.application.routes.draw do
         resources :speechs, only: [:create]
     end
    end
+   
    resources :mypages, only: [:show] do# ユーザーdo
     collection do
         get :ganbaru
         get :ganbatta
     end
    end
-   resources :profiles, only: [:edit,:update]
+   
+   resources :profiles, only: [:edit,:update] #プロフィール
    resources :users, only: [:show] do
     collection do
         get :ganbaru
         get :ganbatta
     end   
    end
+   
    resources :favorites, only: [:create, :index, :destroy] #お気に入り
-   resources :speeches, only: [:create] #コメント
+    resource :favorites, only: [:index, :create, :destroy]
+    resources :speeches, only: [:create] #コメント
 end
+
 
   # 管理者
  namespace :admin do

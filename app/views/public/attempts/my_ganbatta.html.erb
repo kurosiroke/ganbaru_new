@@ -1,0 +1,40 @@
+<p id="notice"></p>
+<div class="container col-10">
+  <div class="row">
+    <div class="col-3">
+    <%= render 'public/mypages/list', user: current_user, attempt: @attempt %>
+    </div>
+    <div class="container col-9">
+      <div class="row">
+        <div class="col-md-8 offset-md-1">
+        <h2>自分のがんばった！</h2>
+          <table class="table table-hover table-inveres">
+            <thead>
+              <tr>
+                <th>日付</th>
+                <th>がんばったリスト</th>
+                <th>投稿者</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @attempt.each do |attempt| %>
+             <tr>
+                <td>
+                  <%= attempt.created_at.strftime('%Y/%m/%d') %>
+                </td>
+                <td>
+                  <%= link_to attempt.content, attempt_path(attempt.id)%>
+                </td>
+                <td> 
+                  <%= link_to "削除", attempt_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
+                </td>
+            </tr>
+            <% end %>
+            </tbody>
+          </table> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
