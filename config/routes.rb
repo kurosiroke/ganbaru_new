@@ -26,7 +26,7 @@ Rails.application.routes.draw do
         get :ganbatta#がんばったアクション
         get :my_ganbaru
         get :my_ganbatta
-        resources :post_speechs, only: [:create]
+        resources :speechs, only: [:create]
     end
    end
    resources :mypages, only: [:show] do# ユーザーdo

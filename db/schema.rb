@@ -33,11 +33,15 @@ ActiveRecord::Schema.define(version: 2023_07_01_122433) do
   end
 
   create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "attempt_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "speeches", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "attempt_id", null: false
     t.string "speech", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

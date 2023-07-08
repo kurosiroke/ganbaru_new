@@ -28,8 +28,8 @@ class Public::AttemptsController < ApplicationController
     end
     
     def show
-        @attempt = Attempt.find(params[:id])#ユーザーの投稿のshowを表示する
-        @post_speeche = PostSpeeche.new
+        @attempt = Attempt.find(params[:id]) #ユーザーの投稿のshowを表示する
+        @speech = Speech.new
     end 
     
     def edit

@@ -5,11 +5,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
     create_table :users do |t|
       ## Database authenticatable
        ## ニックネームを保存する
-      t.string :name
+      t.string :name, null: false
       # 自己紹介文
-      t.text :profile
+      t.text :profile, null: false
       # メールアドレス
-      t.string :email,              null: false, default: ""
+      t.string :email, null: false, default: ""
       # パスワード
       t.string :encrypted_password, null: false, default: ""
 

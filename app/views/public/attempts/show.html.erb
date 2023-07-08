@@ -1,16 +1,30 @@
 <p id="notice"></p>
 <div class="container col-8">
     <h3>取り組みリスト確認</h3>
-        <table class="table">
-           <tbody>
-            <tr>
-                <td><%= @attempt.created_at.strftime('%Y/%m/%d') %></td>
-                <td>
-                    <%= @attempt.content %>
-                </td>
-                <td><%= link_to "編集", edit_attempt_path, class: 'btn btn-sm btn-success' %></td>
-                <td><%= link_to "削除", attempt_path, method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %></td>
-            </tr>
-            </tbody>
-        </table>
+    <table class="table">
+       <tbody>
+        <tr>
+            <td><%= @attempt.created_at.strftime('%Y/%m/%d') %></td>
+            <td>
+                <%= @attempt.content %>
+            </td>
+            <td><%= link_to "編集", edit_attempt_path, class: 'btn btn-sm btn-success' %></td>
+            <td><%= link_to "削除", attempt_path, method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+  <p>コメント件数：<%= @attempt.speeches.count %></p>
+  <% @attempt.speeches.each do |speech| %>
+    <%= speech.user.name %>
+    <%= speech.created_at.strftime('%Y/%m/%d') %><%= speech.speech %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: @speech, url: speeches_path do |f| %>
+    <%= f.hidden_field :attempt_id, value: @attempt.id %>
+    <%= f.text_area :speech, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "投稿する" %>
+  <% end %>
 </div>
