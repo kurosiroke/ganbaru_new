@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
   
+  namespace :admin do
+    get 'tags/index'
+    get 'tags/edit'
+    resources :tags, only: [:index, :create, :edit, :update, :destroy]
+  end
    root to: 'public/homes#top'
  
   # 管理者
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
+
+
   # 利用者
   devise_for :users, skip: [:passwords], controllers: {
   registrations: "public/registrations",

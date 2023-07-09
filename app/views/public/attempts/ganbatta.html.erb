@@ -1,38 +1,39 @@
 <div class="container col-10">
-    <div class="row">
-        <div class="col-md-8 offset-md-1">
-        <h2>みんなのがんばった！</h2>
-            <table class="table table-hover table-inveres">
-            <thead>
-                <tr>
-                    <th>日付</th>
-                    <th>がんばったリスト！</th>
-                    <th>投稿者</th>
-                    <th></th>
-                </tr>
-            </thead>
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
+    <h2>みんなのがんばった！</h2>
+      <table class="table table-hover table-inveres">
+        <thead>
+            <tr>
+              <th>日付</th>
+              <th>がんばったリスト！</th>
+              <th>投稿者</th>
+              <th></th>
+            </tr>
+        </thead>
         <tbody>
         <% @ganbatta.each do |attempt| %>
         <tr>
-            <td><%= attempt.created_at.strftime('%Y/%m/%d') %></td>
-            <td>
-                <%= link_to attempt_path(attempt.id) do %>
-                <%= attempt.content %>
-                <% end %>
-            </td>
-            <td>
-                <%= link_to @user do %>
-                <%= attempt.user.name %></td>
-                <% end %>
-             <td> 
-                <% if attempt.user == current_user %>
-                <%= link_to "削除", attempt_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
-                <% end %>
-            </td>
+          <td><%= attempt.created_at.strftime('%Y/%m/%d') %></td>
+          <td>
+            <%= link_to attempt_path(attempt.id) do %>
+            <%= attempt.content %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to @user do %>
+            <%= attempt.user.name %></td>
+            <% end %>
+           <td> 
+            <% if attempt.user == current_user %>
+            <%= link_to "削除", attempt_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
+            <% end %>
+          </td>
         </tr>
         <% end %>
         </tbody>
       </table>
-     </div>
+      <%= paginate @ganbatta %>
+    </div>
   </div>
 </div>

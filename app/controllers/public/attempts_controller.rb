@@ -2,29 +2,34 @@ class Public::AttemptsController < ApplicationController
     
     def index
         @user = current_user
-        @ganbaru = Attempt.all.ganbaru # がんばるりすと
-        @ganbatta = Attempt.all.ganbatta # がんばったリスト
+        @ganbaru = Attempt.page(params[:page]).ganbaru # がんばるりすと
+        @ganbatta = Attempt.page(params[:page]).ganbatta # がんばったリスト
+        # @attempts = params[:tag_id].present? ? Tag.find(params[:tag_id]).attempts : Attempt.all
     end
     
     def ganbaru
         @user = current_user
         @attempt = Attempt.new #newを表示させるため
-        @ganbaru = Attempt.all.ganbaru.order("created_at DESC").limit(8) # がんばるりすと 新着順
+        @ganbaru = Attempt.all.ganbaru.order("created_at DESC").page(params[:page]) # がんばるりすと 新着順
+        @attempts = params[:tag_id].present? ? Tag.find(params[:tag_id]).attempts : Attempt.all
     end
        
     def ganbatta
         @user = current_user
         @attempt = Attempt.new
-        @ganbatta = Attempt.all.ganbatta.order("created_at DESC").limit(8) # がんばったリスト 新着順
+        @ganbatta = Attempt.all.ganbatta.order("created_at DESC").page(params[:page])# がんばったリスト 新着順
+        @attempts = params[:tag_id].present? ? Tag.find(params[:tag_id]).attempts : Attempt.all
     end
     
     def my_ganbaru
         #@attempt = Attempt.all.ganbaru.order("created_at DESC").limit(8) ←すべてのユーザーを表示する。
-        @attempt = current_user.attempts.ganbaru.order('id DESC').limit(8) #ログインしているユーザーのみを表示させる
+        @attempt = current_user.attempts.ganbaru.order('id DESC').page(params[:page]) #ログインしているユーザーのみを表示させる
+        @attempts = params[:tag_id].present? ? Tag.find(params[:tag_id]).attempts : Attempt.all
     end
     
     def my_ganbatta
-        @attempt = current_user.attempts.ganbatta.order('id DESC').limit(3) 
+        @attempt = current_user.attempts.ganbatta.order('id DESC').page(params[:page])
+        @attempts = params[:tag_id].present? ? Tag.find(params[:tag_id]).attempts : Attempt.all
     end
     
     def show
@@ -61,7 +66,7 @@ class Public::AttemptsController < ApplicationController
     
     def attempt_params
         #params.permit(:content, :created_at)
-        params.require(:attempt).permit(:content, :part)
+        params.require(:attempt).permit(:content, :part, :tag_ids)
     end
  
 end

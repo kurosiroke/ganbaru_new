@@ -2,7 +2,11 @@ class Attempt < ApplicationRecord
   has_many :favorites, dependent: :destroy #お気に入りの設定、削除されたら削除
   has_many :speeches, dependent: :destroy #コメントの設定。削除されたら削除
   belongs_to :user
+  has_many :attempt_and_tags, dependent: :destroy
+  has_many :tags, through: :attempt_and_tags
 
+  validates :content, presence: true
+  
   enum part: { ganbaru: 0, ganbatta: 1 } 
   
   def self.looks(search, word)
