@@ -1,0 +1,7 @@
+<div class="container">
+    <% @favorites.each do |favorite| %>
+        <div>
+            <%= link_to favorite.attempt.content, attempts_path %>
+        </div>
+    <% end %>
+</div>

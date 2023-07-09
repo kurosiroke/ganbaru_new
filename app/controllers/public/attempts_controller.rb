@@ -19,12 +19,12 @@ class Public::AttemptsController < ApplicationController
     end
     
     def my_ganbaru
-        @attempt = Attempt.all.ganbaru.order("created_at DESC").limit(8)
-        
+        #@attempt = Attempt.all.ganbaru.order("created_at DESC").limit(8) ←すべてのユーザーを表示する。
+        @attempt = current_user.attempts.ganbaru.order('id DESC').limit(8) #ログインしているユーザーのみを表示させる
     end
     
     def my_ganbatta
-        @attempt = Attempt.all.ganbatta.order("created_at DESC").limit(8)
+        @attempt = current_user.attempts.ganbatta.order('id DESC').limit(3) 
     end
     
     def show

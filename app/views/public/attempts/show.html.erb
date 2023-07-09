@@ -8,36 +8,64 @@
         <td>
             <%= @attempt.content %>
         </td>
-        <td><%= link_to "編集", edit_attempt_path, class: 'btn btn-sm btn-success' %></td>
-        <td><%= link_to "削除", attempt_path, method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %></td>
+        <td> 
+          <% if @attempt.user == current_user %>
+          <%= link_to "編集", edit_attempt_path, class: 'btn btn-sm btn-success' %>
+          <% end %>
+        </td>
+        <td>
+          <% if @attempt.user == current_user %>
+          <%= link_to "削除", attempt_path, method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
+          <% end %>
       </tr>
     </tbody>
   </table>
-  <% if @attempt.favorited_by?(current_user) %>
+  <% unless current_user == @attempt.user %><!--投稿した人間にはいいねを表示しない-->
+    <% if @attempt.favorited_by?(current_user) %><!--投稿へいいねの表示-->
+      <p>
+        <%= link_to attempt_favorites_path(@attempt), method: :delete do %>
+          ♥<%= @attempt.favorites.count %> いいね
+        <% end %>
+      </p>
+      <% else %>
+      <p>
+        <%= link_to attempt_favorites_path(@attempt), method: :post do %>
+          ♡<%= @attempt.favorites.count %> いいね
+        <% end %>
+      </p>
+    <% end %>
+  <% else %>
     <p>
-      <%= link_to favorites_path(@attempt), method: :delete do %>
-        ♥<%= @attempt.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to favorites_path(@attempt), method: :post do %>
-        ♡<%= @attempt.favorites.count %> いいね
-      <% end %>
+      ♥<%= @attempt.favorites.count %> いいね
+      <!--いいねの件数表示-->
     </p>
   <% end %>
   <div>
     <p>コメント件数：<%= @attempt.speeches.count %></p>
     <% @attempt.speeches.each do |speech| %>
-      <%= speech.user.name %>
-      <%= speech.created_at.strftime('%Y/%m/%d') %><%= speech.speech %>
+  
+    <div class="d-flex">
+      <div class="mr-3"><!--右に３開ける-->
+        <%= speech.user.name %>
+      </div>
+      <div>
+        <small class="text-black-50"><%= speech.created_at.strftime('%Y/%m/%d') %></small>
+        <!--小さく、薄い色で表示させる-->
+      </div>
+    </div>
+    <div>
+      <%= simple_format(speech.speech) %>
+      <!--textのものはこれで自動改行される-->
+    </div>
     <% end %>
   </div>
-  <div>
-    <%= form_with model: @speech, url: speeches_path do |f| %>
-      <%= f.hidden_field :attempt_id, value: @attempt.id %>
-      <%= f.text_area :speech, rows: '5', placeholder: "コメントをここに" %>
-      <%= f.submit "投稿する" %>
-    <% end %>
-  </div>
+  <% unless current_user == @attempt.user %><!--投稿した人間には表示しない-->
+    <div>
+      <%= form_with model: @speech, url: speeches_path do |f| %>
+        <%= f.hidden_field :attempt_id, value: @attempt.id %>
+        <%= f.text_area :speech, rows: '5', placeholder: "コメントをここに" %>
+        <%= f.submit "投稿する" %>
+      <% end %>
+    </div>
+  <% end %>
 </div>

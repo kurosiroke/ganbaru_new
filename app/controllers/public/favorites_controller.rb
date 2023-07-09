@@ -1,7 +1,7 @@
-class Public::FavoriteActionsController < ApplicationController
+class Public::FavoritesController < ApplicationController
  
   def index
-  
+    @favorites = current_user.favorites
   end
 
   def create

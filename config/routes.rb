@@ -22,12 +22,15 @@ Rails.application.routes.draw do
    get 'homes/about' =>'homes#about', as: "about"
    get "search" => "searches#search"
    resources :attempts, only: [:index, :show, :edit, :new, :update, :create, :destroy] do#取り組み 
+    
+    resource :favorites, only: [:create, :destroy]
     collection do
         get :ganbaru #がんばるアクション
         get :ganbatta#がんばったアクション
         get :my_ganbaru
         get :my_ganbatta
-        resources :speechs, only: [:create]
+        get 'favorites' => 'favorites#index'
+        resources :speeches, only: [:create] #コメント
     end
    end
    
@@ -46,9 +49,6 @@ Rails.application.routes.draw do
     end   
    end
    
-   resources :favorites, only: [:create, :index, :destroy] #お気に入り
-    resource :favorites, only: [:index, :create, :destroy]
-    resources :speeches, only: [:create] #コメント
 end
 
 
