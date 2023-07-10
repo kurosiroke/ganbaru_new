@@ -7,7 +7,9 @@
             <tr>
               <th>日付</th>
               <th>がんばったリスト！</th>
+              <th>タグ</th>
               <th>投稿者</th>
+              <th></th>
               <th></th>
             </tr>
         </thead>
@@ -22,8 +24,19 @@
           </td>
           <td>
             <%= link_to @user do %>
-            <%= attempt.user.name %></td>
+            <%= attempt.user.name %>
             <% end %>
+          </td>
+          <td>
+            <% attempt.tags.each do |tag| %>
+              <%= tag.tag_type %>
+            <% end %>
+          </td>
+          <td> 
+              <% if attempt.user == current_user %>
+              <%= link_to "編集", edit_attempt_path(attempt.id), class: 'btn btn-sm btn-success' %>
+              <% end %>
+            </td>
            <td> 
             <% if attempt.user == current_user %>
             <%= link_to "削除", attempt_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>

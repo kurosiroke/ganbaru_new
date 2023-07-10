@@ -6,7 +6,7 @@ class Attempt < ApplicationRecord
   has_many :tags, through: :attempt_and_tags
 
   validates :content, presence: true
-  
+
   enum part: { ganbaru: 0, ganbatta: 1 } 
   
   def self.looks(search, word)
