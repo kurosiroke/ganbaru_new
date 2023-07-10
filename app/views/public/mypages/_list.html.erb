@@ -13,23 +13,21 @@
   </thead>
 </table>
 <div class="row">
-    <%= link_to  edit_profile_path(user), class: "btn btn-success btn-default btn-sm" do %>
+    <%= link_to  edit_profile_path(user), class: "btn btn-outline-success btn-default btn-sm btn-block" do %>
       編集
     <% end %>
 </div>
 <h5 class="mt-3">がんばること</h5>
-<%= form_with model: attempt, url: attempts_path, method: :post do |f| %>
-    <%= f.text_area :content %><br>
-    <div class="form-group m-5">タグ</div>
-    <div class="row d-flex justify-content-start m-5">
-    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :tag_type) do |tag| %>
+<%= form_with model: @attempt, url: attempts_path, method: :post do |f| %>
+  <%= f.text_area :content %><br>
+  <h5 class="form-group">タグ</h5>
+  <div class="row d-flex justify-content-start m-1">
+    <% Tag.all.each do |tag| %>
       <div class="form-check form-check-inline flex flex-wrap">
-        <%= tag.label do %>
-          <%= tag.check_box %>
-          <%= tag.text %>
-        <% end %>
+        <%= f.check_box :tag_ids, { multiple: true }, tag.id, nil %>
+        <%= f.label :tag_ids, tag.tag_type %>
       </div>
     <% end %>
-    </div>
-    <%= f.submit "投稿", class: "btn btn-success btn-default btn-sm" %>
+  </div>
+  <%= f.submit "投稿", class: "btn btn-success btn-default btn-sm btn-block" %>
 <% end %>

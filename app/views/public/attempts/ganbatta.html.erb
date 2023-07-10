@@ -23,13 +23,13 @@
             <% end %>
           </td>
           <td>
-            <%= link_to @user do %>
-            <%= attempt.user.name %>
+            <% attempt.tags.each do |tag| %>
+              <%= tag.tag_type %>
             <% end %>
           </td>
           <td>
-            <% attempt.tags.each do |tag| %>
-              <%= tag.tag_type %>
+            <%= link_to @user do %>
+            <%= attempt.user.name %>
             <% end %>
           </td>
           <td> 

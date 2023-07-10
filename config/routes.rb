@@ -61,7 +61,7 @@ end
 
   # 管理者
  namespace :admin do
-   get '/' => 'homes#top'
+   get '/' => 'admin/homes#top'
    resources :attempts, only: [:index, :destroy]
    resources :users, only: [:index, :destroy]
    resources :speeches, only: [:index, :destroy]

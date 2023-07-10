@@ -9,11 +9,3 @@ Admin.create!(
   email: "test@test",## 任意のメールアドレス,
   password: "123123"## 任意のパスワード
   )
-  
-1.times do |n|
-  User.create!(
-      email: "t@t",
-      name: "t",
-    )
-  end
-  

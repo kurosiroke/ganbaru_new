@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy #お気に入り　削除されたら
   
   validates :name, presence: true, uniqueness: true, length: { maximum: 10 }
-  validates :profile, presence: true
+  
   
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|

@@ -7,7 +7,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
        ## ニックネームを保存する
       t.string :name, null: false
       # 自己紹介文
-      t.text :profile, null: false
+      t.text :profile
       # メールアドレス
       t.string :email, null: false, default: ""
       # パスワード
