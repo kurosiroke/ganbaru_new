@@ -17,9 +17,18 @@
       <% end %>
     <% else %>
       <% @attempts.each do |attempt| %>
-          <div>
+        <div class="row">
+          <div class="col">
             <%= attempt.content %>
           </div>
+          <div class="col">
+            <% attempt.tags.each do |tag| %>
+              <%= link_to tag_path(keyword: tag.tag_type) do %>
+              <%= tag.tag_type %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     <% end %>
   <% end %>

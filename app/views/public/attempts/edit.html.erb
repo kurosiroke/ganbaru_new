@@ -2,32 +2,48 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h2>取り組みリストの編集</h2>
-          <div class="col-8">
-          <%= form_with model: @attempt, url: attempt_path(@attempt.id), method: :patch, local: true do |f| %>
-            <div class="form-group">
-                <label for="action content">取り組みリストの編集</label>
-                <%= f.text_area :content, class: 'form-control content', id: "action_content" %>
-            </div>
-            <div class="row">
-              <!--ラジオボタンの中央寄せ-->
-              <div class="col text-center">
-                  <div>
-                    <%= f.radio_button :part, "ganbaru", checked: true %>
-                    <%= f.label :attempt_ganbaru, "がんばる！" %>
-                    &emsp;<%= f.radio_button :part, "ganbatta" %>
-                    <%= f.label :attempt_ganbatta, "がんばった！" %>
-                  </div><br>
-              </div>
-            </div>
-            <p>※&emsp;犯罪に巻き込まれるような投稿はお控えください。</p>
-            <div class="row">
-              <div class="col text-center"> <!--ボタンを中央に移動させる-->
-                  <%= f.submit "確認画面へ進む", class: 'btn btn-sm btn-primary ml-4' %>
-              </div>
-            </div>
-          <% end %>
+    <h2>取り組みリストの編集</h2>
+        <div class="col-8">
+        <%= form_with model: @attempt, url: attempt_path(@attempt.id), method: :patch, local: true do |f| %>
+          <div class="form-group">
+              <label for="action content">取り組みリストの編集</label>
+              <%= f.text_area :content, class: 'form-control content', id: "action_content" %>
           </div>
+          <div class="row">
+            <!--ラジオボタンの中央寄せ-->
+            <div class="col text-center">
+                <div>
+                  <%= f.radio_button :part, "ganbaru", checked: true %>
+                  <%= f.label :attempt_ganbaru, "がんばる！" %>
+                  &emsp;<%= f.radio_button :part, "ganbatta" %>
+                  <%= f.label :attempt_ganbatta, "がんばった！" %>
+                </div><br>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-start m-1">
+            <% Tag.all.each do |tag| %>
+              <div class="form-check form-check-inline flex flex-wrap">
+                <%= f.check_box :tag_ids, { multiple: true }, tag.id, nil %>
+                <%= f.label :tag_ids, tag.tag_type %>
+              </div>
+            <% end %>
+          </div>
+          <div>
+            <%= f.label :is_published_flag, "公開", value: true %>
+            <%= f.radio_button :is_published_flag, 'true' %>
+          </div>
+          <div>
+            <%= f.label :is_published_flag, "非公開", value: false %>
+            <%= f.radio_button :is_published_flag,'false' %>
+          </div>
+          <p>※&emsp;犯罪に巻き込まれるような投稿はお控えください。</p>
+          <div class="row">
+            <div class="col text-center"> <!--ボタンを中央に移動させる-->
+                <%= f.submit "確認画面へ進む", class: 'btn btn-sm btn-primary ml-4' %>
+            </div>
+          </div>
+        <% end %>
+        </div>
     </div>
   </div>
 </div>

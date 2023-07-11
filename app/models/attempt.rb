@@ -9,6 +9,14 @@ class Attempt < ApplicationRecord
 
   enum part: { ganbaru: 0, ganbatta: 1 } 
   
+  #公開・非公開機能
+  scope :published, -> {where(is_published_flag: true)}
+  scope :unpublished, -> {where(is_published_flag: false)}
+  
+  def self.search(keyword)
+    where("facility_name LIKE ? or address LIKE ? or detailed_description LIKE ?", "%#{sanitize_sql_like(keyword)}%", "%#{sanitize_sql_like(keyword)}%", "%#{sanitize_sql_like(keyword)}%")
+  end
+  
   def self.looks(search, word)
     if search == "perfect_match"
       @user = Attempt.where("content LIKE?", "#{word}")

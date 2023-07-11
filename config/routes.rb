@@ -28,8 +28,8 @@ Rails.application.routes.draw do
    get '/' => 'homes#top'
    get 'homes/about' =>'homes#about', as: "about"
    get "search" => "searches#search"
+    get "tag" => "attempts#search"
    resources :attempts, only: [:index, :show, :edit, :new, :update, :create, :destroy] do#取り組み 
-    
     resource :favorites, only: [:create, :destroy]
     collection do
         get :ganbaru #がんばるアクション
