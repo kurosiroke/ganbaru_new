@@ -1,0 +1,27 @@
+<tbody>
+  <% @attempt.each do |attempt| %>
+   <tr>
+      <td>
+        <%= attempt.created_at.strftime('%Y/%m/%d') %>
+      </td>
+      <td>
+        <%= link_to attempt.content, attempt_path(attempt.id)%>
+      </td>
+       <td>
+        <% attempt.tags.each do |tag| %>
+          <%= tag.tag_type %>
+        <% end %>
+      </td>
+      <td> 
+        <% if attempt.user == current_user %>
+        <%= link_to "編集", edit_attempt_path(attempt.id), class: 'btn btn-sm btn-success' %>
+        <% end %>
+      </td>
+      <td> 
+        <% if attempt.user == current_user %>
+        <%= link_to "削除", attempt_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
+        <% end %>
+      </td>
+  </tr>
+  <% end %>
+</tbody>
