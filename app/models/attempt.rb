@@ -6,7 +6,8 @@ class Attempt < ApplicationRecord
   has_many :tags, through: :attempt_and_tags
 
   validates :content, presence: true
-
+  validates :is_published_flag, presence: true
+  
   enum part: { ganbaru: 0, ganbatta: 1 } 
   
   #公開・非公開機能

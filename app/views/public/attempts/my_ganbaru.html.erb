@@ -18,9 +18,9 @@
                 <th></th>
               </tr>
             </thead>
-            <%= render 'public/attempts/my', user: current_user, attempt: @attempt %>
+            <%= render 'public/attempts/my', user: current_user, attempt: @attempts %>
           </table> 
-          <%= paginate @attempt %>
+          <%= paginate @attempts %>
         </div>
       </div>
     </div>

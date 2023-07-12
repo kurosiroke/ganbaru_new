@@ -31,13 +31,14 @@
     <% end %>
     </tbody>
   </table>
-  <div>
+  <div class="text-right">
   <% if user_signed_in? %>
     <%= link_to ganbaru_attempts_path do %>
       みんなのがんばる！一覧
     <% end %>
   <% end %>
   </div>
+  <br>
   <table class="table table-hover table-inveres">
      <thead>
       <tr>
@@ -65,12 +66,13 @@
     <% end %>
     </tbody>
   </table>
-  <div>
+  <div class="text-right">
     <% if user_signed_in? %>
       <%= link_to ganbaru_attempts_path do %>
         みんなのがんばる！一覧
       <% end %>
     <% end %>
   </div>
+  <br>
 </div>
 

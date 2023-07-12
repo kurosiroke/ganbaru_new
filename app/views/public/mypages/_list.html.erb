@@ -30,12 +30,7 @@
     <% end %>
   </div>
   <div>
-   <%= f.label :is_published_flag, "公開", value: true %>
-   <%= f.radio_button :is_published_flag, 'true' %>
+    <%= f.hidden_field :is_published_flag, value: true %><!--投稿を表示か非表示かで、表示で固定し、隠して表示させる-->
   </div>
-  <div>
-   <%= f.label :is_published_flag, "非公開", value: false %>
-   <%= f.radio_button :is_published_flag,'false' %>
-    </div>
   <%= f.submit "投稿", class: "btn btn-success btn-default btn-sm btn-block" %>
 <% end %>

@@ -7,35 +7,28 @@ class Public::AttemptsController < ApplicationController
     end
     
     def index
-        @user = current_user
-        @ganbaru = Attempt.page(params[:page]).ganbaru # がんばるりすと
-        @ganbatta = Attempt.page(params[:page]).ganbatta # がんばったリスト
-        # @attempts = params[:tag_id].present? ? Tag.find(params[:tag_id]).attempts : Attempt.all
+        @attempts = Attempt.published.all.order("created_at DESC").page(params[:page])
     end
     
     def ganbaru
         @user = current_user
         @attempt = Attempt.new #newを表示させるため
         @attempts = Attempt.published.ganbaru.order("created_at DESC").page(params[:page]) # がんばるりすと 新着順
-        @attempts = params[:tag_id].present? ? Tag.find(params[:tag_id]).attempts.published : @attempts
     end
        
     def ganbatta
         @user = current_user
         @attempt = Attempt.new
-        @attempts = Attempt.published.ganbatta.order("created_at DESC").page(params[:page])# がんばったリスト 新着順
-        @attempts = params[:tag_id].present? ? Tag.find(params[:tag_id]).attempts.published : @attempts
+        @attempts = Attempt.published.ganbatta.order("created_at DESC").page(params[:page])# がんばったリスト 新着��
     end
     
     def my_ganbaru
         #@attempt = Attempt.all.ganbaru.order("created_at DESC").limit(8) ←すべてのユーザーを表示する。
-        @attempt = current_user.attempts.ganbaru.order('id DESC').page(params[:page]) #ログインしているユーザーのみを表示させる
-        @attempts = params[:tag_id].present? ? Tag.find(params[:tag_id]).attempts : Attempt.all
+        @attempts = current_user.attempts.ganbaru.order('id DESC').page(params[:page]) #ログインしているユーザーのみを表示させる
     end
     
     def my_ganbatta
-        @attempt = current_user.attempts.ganbatta.order('id DESC').page(params[:page])
-        @attempts = params[:tag_id].present? ? Tag.find(params[:tag_id]).attempts : Attempt.all
+        @attempts = current_user.attempts.ganbatta.order('id DESC').page(params[:page])
     end
     
     def show
@@ -59,7 +52,7 @@ class Public::AttemptsController < ApplicationController
         #byebug
         @attempt = Attempt.find(params[:id])
         @attempt.update(attempt_params)
-        redirect_to ganbatta_attempts_path
+        redirect_to attempts_path
     end
     
     def destroy
@@ -71,7 +64,6 @@ class Public::AttemptsController < ApplicationController
     private
     
     def attempt_params
-        #params.permit(:content, :created_at)
         params.require(:attempt).permit(:content, :part, :is_published_flag, tag_ids: [])
     end
  
