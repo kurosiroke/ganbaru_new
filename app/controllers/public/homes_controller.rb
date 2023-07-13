@@ -1,7 +1,6 @@
 class Public::HomesController < ApplicationController
 
     def top
-        @users = User.all
         @user = current_user
         @attempts = Attempt.all
         

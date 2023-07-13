@@ -13,20 +13,20 @@
         <% end %>
       </td>
       <td>
-        <%= link_to @user do %>
+        <%= link_to user_path(attempt.user.id) do %>
         <%= attempt.user.name %></td>
         <% end %>
       </td>
-      <td> 
+      <td>
         <% if attempt.user == current_user %>
         <%= link_to "編集", edit_attempt_path(attempt.id), class: 'btn btn-sm btn-success' %>
         <% end %>
       </td>
-      <td> 
+      <td>
         <% if attempt.user == current_user %>
         <%= link_to "削除", attempt_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
         <% end %>
       </td>
     </tr>
-  <% end %> 
+  <% end %>
   </tbody>

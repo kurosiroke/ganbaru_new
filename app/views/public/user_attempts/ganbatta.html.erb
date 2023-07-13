@@ -1,0 +1,22 @@
+     <table class="table table-hover table-inveres">
+        <thead>
+          <tr>
+            <th><%= link_to "がんばったこと一覧", ganbatta_user_attempts_path %></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @attempts.each do |attempt| %>
+          <tr>
+            <td><%= attempt.created_at.strftime('%Y/%m/%d') %></td>
+            <td>
+              <%= link_to attempt_path(attempt.id) do %>
+              <%= attempt.content %>
+              <% end %>
+            </td>
+            <td>
+              <%= attempt.user.name %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>

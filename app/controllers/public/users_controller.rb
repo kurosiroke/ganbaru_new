@@ -1,13 +1,18 @@
 class Public::UsersController < ApplicationController
   def show
-    @attempt = Attempt.new
-    #@attempts = @user.attempts
     @user = User.find(params[:id])
+    @ganbarus = @user.attempts.ganbaru.order('id DESC').limit(3) #eunmでpartを分岐させてるため、"attempts.ganbaru"としている
+    @ganbattas = @user.attempts.ganbatta.order('id DESC').limit(3)#ganbarusとganbattasがattemptsのためattemptを引っ張れる
   end
   
-  def index
-    @users = User.all
-    @attempt = Attempt.new
+  def ganbaru
+    @user = User.find(params[:id])
+    @ganbarus = current_user.attempts.ganbaru.order('id DESC') 
+  end
+  
+  def ganbaru
+    @user = User.find(params[:id])
+    @ganbattas = current_user.attempts.ganbatta.order('id DESC')
   end
   
   private
