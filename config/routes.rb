@@ -49,7 +49,7 @@ Rails.application.routes.draw do
    end
    
    resources :profiles, only: [:edit,:update] #プロフィール
-   resources :users, only: [:show] do
+   resources :users, only: [:index, :show] do
     collection do
         get :ganbaru
         get :ganbatta
