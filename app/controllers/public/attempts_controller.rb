@@ -26,10 +26,12 @@ class Public::AttemptsController < ApplicationController
     def my_ganbaru
         #@attempt = Attempt.all.ganbaru.order("created_at DESC").limit(8) ←すべてのユーザーを表示する。
         @attempts = current_user.attempts.ganbaru.order('id DESC').page(params[:page]) #ログインしているユーザーのみを表示させる
+        @attempt = Attempt.new
     end
     
     def my_ganbatta
         @attempts = current_user.attempts.ganbatta.order('id DESC').page(params[:page])
+        @attempt = Attempt.new
     end
     
     def show
@@ -45,14 +47,24 @@ class Public::AttemptsController < ApplicationController
         @user = current_user
         @attempt = current_user.attempts.build(attempt_params) # actionの指定と保存を行う
         @attempt.part = 'ganbaru' #newで作成時はpartをがんばるに指定
-        @attempt.save
-        redirect_to my_ganbaru_attempts_path #myがんばるリストに移動
+        if @attempt.save
+           flash[:notice] = "投稿されました."
+           redirect_to my_ganbaru_attempts_path
+        else
+          attempt = @user.attempts
+          @favorite = attempt.connection
+          @ganbarus = current_user.attempts.ganbaru.order('id DESC').limit(3)
+          @ganbattas = current_user.attempts.ganbatta.order('id DESC').limit(3) 
+          render "public/mypages/show"
+        end
+           #myがんばるリストに移動
     end
     
     def update
         #byebug
         @attempt = Attempt.find(params[:id])
         @attempt.update(attempt_params)
+        
         redirect_to attempts_path
     end
     

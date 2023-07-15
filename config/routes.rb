@@ -51,21 +51,15 @@ Rails.application.routes.draw do
   resources :profiles, only: [:edit,:update] #プロフィール
   
   resources :users, only: [:show] do
-    collection do
         get :ganbaru
         get :ganbatta
-    end   
   end
    
-  resources :user_attempts, only: [:show, :ganbatta] do# ユーザーの投稿
-    collection do
-        get :ganbaru
-        get :ganbatta
-    end
+  # resources :user_attempts, only: [:show] do# ユーザーの投稿
+  #       get :ganbaru
+  #       get :ganbatta
+  # end
   end
-   
-end
-
 
   # 管理者
  namespace :admin do

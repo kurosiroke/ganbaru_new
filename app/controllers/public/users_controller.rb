@@ -6,13 +6,13 @@ class Public::UsersController < ApplicationController
   end
   
   def ganbaru
-    @user = User.find(params[:id])
-    @ganbarus = current_user.attempts.ganbaru.order('id DESC') 
+    @user = User.find(params[:user_id])
+    @ganbarus = @user.attempts.ganbaru.order('id DESC') 
   end
   
-  def ganbaru
-    @user = User.find(params[:id])
-    @ganbattas = current_user.attempts.ganbatta.order('id DESC')
+  def ganbatta
+    @user = User.find(params[:user_id])
+    @ganbattas = @user.attempts.ganbatta.order('id DESC')
   end
   
   private

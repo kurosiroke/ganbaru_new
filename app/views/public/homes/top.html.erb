@@ -23,7 +23,7 @@
           <% end %>
         </td>
         <td>
-          <%= link_to @user do %>
+          <%= link_to user_path(attempt.user.id) do %>
           <%= attempt.user.name %>
           <% end %>
         </td>
@@ -58,7 +58,7 @@
           <% end %>
         </td>
         <td>
-          <%= link_to @user do %>
+          <%= link_to user_path(attempt.user.id) do %>
           <%= attempt.user.name %>
           <% end %>
         </td>

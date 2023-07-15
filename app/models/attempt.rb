@@ -5,8 +5,8 @@ class Attempt < ApplicationRecord
   has_many :attempt_and_tags, dependent: :destroy
   has_many :tags, through: :attempt_and_tags
 
-  validates :content, presence: true
-  validates :is_published_flag, presence: true
+  validates :content, presence: true #取り組み内容を入れないと投稿させない
+  validates :is_published_flag, presence: true #タグを選択しないと投稿させない。
   
   enum part: { ganbaru: 0, ganbatta: 1 } 
   

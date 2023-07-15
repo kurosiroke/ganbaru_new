@@ -16,7 +16,7 @@
         <table class="table table-hover table-inveres">
           <thead>
             <tr>
-              <th><%= link_to "がんばること一覧", user_attempt_path %></th>
+              <th><%= link_to "がんばること一覧", user_ganbaru_path(@user.id) %></th>
               <th></th>
             </tr>
           </thead>
@@ -39,7 +39,7 @@
         <table class="table table-hover table-inveres">
           <thead>
             <tr>
-              <th><%= link_to "がんばったこと一覧", ganbatta_user_attempts_path %></th>
+              <th><%= link_to "がんばったこと一覧", user_ganbatta_path(@user.id) %></th>
             </tr>
           </thead>
           <tbody>

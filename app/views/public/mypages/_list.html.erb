@@ -1,4 +1,13 @@
-
+  <% if @attempt.errors.any? %>
+  <h3>
+    <%= @attempt.errors.count %>errors prohibited this obj from being saved:
+  </h3>
+  <ul>
+    <% @attempt.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
 <table class="table">
   <thead>
     <tr>
