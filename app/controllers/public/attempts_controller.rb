@@ -14,13 +14,13 @@ class Public::AttemptsController < ApplicationController
         @user = current_user
         @users = User.all
         @attempt = Attempt.new #newを表示させるため
-        @attempts = Attempt.published.ganbaru.order("created_at DESC").page(params[:page]) # がんばるりすと 新着順
+        @attempts = Attempt.published.ganbaru.order("created_at DESC").page(params[:page]).per(7) # がんばるりすと 新着順
     end
        
     def ganbatta
         @user = current_user
         @attempt = Attempt.new
-        @attempts = Attempt.published.ganbatta.order("created_at DESC").page(params[:page])# がんばったリスト 新着
+        @attempts = Attempt.published.ganbatta.order("created_at DESC").page(params[:page]).per(7)# がんばったリスト 新着
     end
     
     def my_ganbaru
