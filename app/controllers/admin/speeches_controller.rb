@@ -1,4 +1,4 @@
 class Admin::SpeechesController < ApplicationController
-    def index
-    end
+  def index
+  end
 end

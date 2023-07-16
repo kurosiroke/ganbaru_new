@@ -63,10 +63,10 @@ Rails.application.routes.draw do
 
   # 管理者
  namespace :admin do
-   get '/' => 'admin/homes#top'
-   resources :attempts, only: [:index, :destroy]
-   resources :users, only: [:index, :destroy]
-   resources :speeches, only: [:index, :destroy]
+   get '/admin' => 'admin/homes#top'
+   resources :attempts, only: [:index, :show, :edit, :update]
+   resources :users, only: [:index, :show, :edit, :update]
+   resources :speeches, only: [:index, :show, :edit, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
 end
