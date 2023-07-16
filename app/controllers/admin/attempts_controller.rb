@@ -1,11 +1,14 @@
 class Admin::AttemptsController < ApplicationController
   def index
-      @attempts = Attempt.all
+      @attempts = Attempt.all.order("created_at DESC").page(params[:page])
   end
   
-  def destrory
+  def destroy
+      attempt = Attempt.find(params[:id])
+      attempt.destroy
+      redirect_to '/admin/attempts'
   end
-  
+
   private
   
   def attempt_params

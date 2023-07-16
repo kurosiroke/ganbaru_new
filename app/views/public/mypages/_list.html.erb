@@ -41,5 +41,6 @@
   <div>
     <%= f.hidden_field :is_published_flag, value: true %><!--投稿を表示か非表示かで、表示で固定し、隠して表示させる-->
   </div>
+  <h6 class="text-danger">※不適切な投稿は予告なく削除されます。<br>ご理解ください。</h6>
   <%= f.submit "投稿", class: "btn btn-success btn-default btn-sm btn-block" %>
 <% end %>

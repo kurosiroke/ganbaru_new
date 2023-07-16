@@ -1,1 +1,31 @@
-コメントの一覧
+<div class="container border border-white contents-area bg-white" >
+  <div class="row mt-5 mb-5">
+    <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 mx-auto">
+      <h3 class="text-center"><strong class="border-bottom border-dark">コメントの一覧</strong></h3>
+      <table class="table table-border contents-area mt-5">
+        <thead class="table-active">
+          <tr>
+            <th>ID</th>
+            <th>日時</th>
+            <th>内容</th>
+            <th colspan="6"></th>
+          </tr> 
+        </thead>
+          <tbody>
+            <% @speeches.each do |speech| %>
+              <tr>
+                <td><%= speech.id %></td>
+                <td><%= speech.created_at.strftime('%Y/%m/%d') %></td>
+                <td><%= speech.speech %></td>
+                <td colspan="3"></td>
+                <td>
+                   <%= link_to "削除", admin_speech_path(speech.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか?" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

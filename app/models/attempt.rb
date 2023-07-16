@@ -7,6 +7,7 @@ class Attempt < ApplicationRecord
 
   validates :content, presence: true #取り組み内容を入れないと投稿させない
   validates :is_published_flag, presence: true #タグを選択しないと投稿させない。
+  validates :content, presence: true, length: {maximum: 250} #入力は200文字まで
   
   enum part: { ganbaru: 0, ganbatta: 1 } 
   

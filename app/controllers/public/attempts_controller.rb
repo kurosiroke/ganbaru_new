@@ -57,7 +57,6 @@ class Public::AttemptsController < ApplicationController
           @ganbattas = current_user.attempts.ganbatta.order('id DESC').limit(3) 
           render "public/mypages/show"
         end
-           #myがんばるリストに移動
     end
     
     def update

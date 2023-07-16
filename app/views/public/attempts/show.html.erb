@@ -74,6 +74,8 @@
       <%= form_with model: @speech, url: speeches_path do |f| %>
         <%= f.hidden_field :attempt_id, value: @attempt.id %>
         <%= f.text_area :speech, rows: '5', placeholder: "コメントをここに" %>
+        <p>※&emsp;犯罪に巻き込まれるような投稿はお控えください。</p>
+        <h6 class="text-danger">※不適切な投稿は予告なく削除されます。<br>ご理解ください。</h6>
         <%= f.submit "投稿する" %>
       <% end %>
     </div>
