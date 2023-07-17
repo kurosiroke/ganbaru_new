@@ -9,7 +9,10 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy #お気に入り　削除されたら
   
   validates :name, presence: true, uniqueness: true, length: { maximum: 10 }
-  
+   
+  def active_for_authentication? #退会
+    super && (is_deleted == false)
+  end
   
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
@@ -33,5 +36,4 @@ class User < ApplicationRecord
       @user = User.all
     end
   end
-
 end

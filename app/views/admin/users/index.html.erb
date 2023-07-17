@@ -8,6 +8,7 @@
             <th>ID</th>
             <th>アカウント名</th>
             <th>プロフィール</th>
+            <th>ステータス</th>
             <th colspan="6"></th>
           </tr> 
         </thead>
@@ -15,12 +16,22 @@
             <% @users.each do |user| %>
               <tr>
                 <td><%= user.id %></td>
-                <td><%= user.name %></td>
-                <td><%= link_to user.profile,admin_user_path(user.id) %></td>
-                <td colspan="3"></td>
                 <td>
-                   <%= link_to "削除", admin_user_path(user.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当にアカウントを削除しますか?" %>
+                  <%= link_to admin_user_path(user.id) do %>
+                  <%= user.name %>
+                  <% end %>
                 </td>
+                <td><%= user.profile %></td>
+                <td>
+                  <% if user.is_deleted == false %>
+                  <div class="text-success">
+                  有効
+                  </div>
+                  <% else %>
+                  退会
+                  <% end %>
+                </td>
+                <td colspan="3"></td>
               </tr>
             <% end %>
           </tbody>

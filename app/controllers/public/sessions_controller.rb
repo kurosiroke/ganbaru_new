@@ -29,4 +29,19 @@ class Public::SessionsController < Devise::SessionsController
     sign_in user
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
+  
+  protected
+    # 退会しているかを判断するメソッド↓
+  def user_state
+      #  ↓emailが存在。アカウントをとってくる
+    @user = User.find_by(email: params[:user][:email])
+      # メールアドレスが正しいかを確認↓
+    return if !@user
+     #パスワード間違ってたらはじく↓
+    if @user.valid_password?(params[:user][:password]) && (@user.is_deleted)
+    # ↓
+    redirect_to new_user_registration_path
+    
+    end
+  end
 end

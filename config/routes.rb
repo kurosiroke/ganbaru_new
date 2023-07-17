@@ -40,19 +40,18 @@ Rails.application.routes.draw do
         resources :speeches, only: [:create] #コメント
     end
   end
-   
   resources :mypages, only: [:show] do# ユーザー
     collection do
         get :ganbaru
         get :ganbatta
     end
   end
-   
   resources :profiles, only: [:edit,:update] #プロフィール
-  
+    patch 'users/withdrawal' => 'users#withdrawal', as: 'withdrawal'  # 論理削除用のルーティング
   resources :users, only: [:show] do
         get :ganbaru
         get :ganbatta
+      
   end
    
   # resources :user_attempts, only: [:show] do# ユーザーの投稿
@@ -65,7 +64,7 @@ Rails.application.routes.draw do
  namespace :admin do
    get '/admin' => 'admin/homes#top'
    resources :attempts, only: [:index, :destroy]
-   resources :users, only: [:index, :show, :edit, :destroy]
+   resources :users, only: [:index, :show, :edit, :update]
    resources :speeches, only: [:index, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

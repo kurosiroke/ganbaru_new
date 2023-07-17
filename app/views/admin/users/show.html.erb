@@ -1,7 +1,40 @@
 <div class="container border border-white contents-area bg-white" >
   <div class="row mt-5 mb-5">
     <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 mx-auto">
-      <h3 class="text-center"><strong class="border-bottom border-dark">プロフィール</strong></h3>
+      <h3 class="text-center"><strong class="border-bottom border-dark">ユーザー情報</strong></h3>
+      <table class="table table-border contents-area mt-5">
+          <tr>
+            <th>ID</th>
+            <td><%= @user.id %></td>
+          </tr>
+          <tr>
+            <th>アカウント名</th>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th>プロフィール</th>
+            <td><%= @user.profile %></td>
+          </tr>
+          <tr>
+            <th>ステータス</th>
+            <td>
+              <% if @user.is_deleted == false %>
+              <div class="text-success">
+               有効
+              </div>
+              <% else %>
+                 退会
+              <% end %>
+            </td>
+          </tr>
+        </thead>
+      </table>
+      <table>
+        <tr>
+          <th><%= link_to "編集する", edit_admin_user_path, class: 'btn btn-sm btn-success' %></th><br>
+          <th><%= link_to "一覧に戻る", admin_users_path, class: 'btn btn-sm btn-primary' %></th>
+        </tr>
+     </table>
     </div>
   </div>
 </div>

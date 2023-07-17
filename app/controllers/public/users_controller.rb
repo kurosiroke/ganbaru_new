@@ -15,10 +15,17 @@ class Public::UsersController < ApplicationController
     @ganbattas = @user.attempts.ganbatta.order('id DESC')
   end
   
+    def withdrawal
+      @user = current_user
+      @user.update!(is_deleted: true)
+      reset_session
+      redirect_to root_path
+  end
+  
   private
   
   def user_params
-     params.require(:user).permit(:name, :profile)
+     params.require(:user).permit(:name, :profile, :is_deleted)
   end
   
 end
