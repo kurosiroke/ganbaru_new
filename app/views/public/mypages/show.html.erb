@@ -1,15 +1,16 @@
-<div class="container col-10">
+<div class="container col-12">
   <div class="row">
     <div class="col-2">
     <%= render 'public/mypages/list', user: @user, attempt: @attempt %>
     </div>
-    <div class="container col-9">
+    <div class="container col-10">
       <div class="row">
       <div class="col-md-8 offset-md-1">
         <table class="table table-hover table-inveres">
-          <thead>
+          <thead class="table-active">
             <tr>
               <th><%= link_to "がんばること一覧",  my_ganbaru_attempts_path %></th>
+              <th></th>
               <th></th>
               <th></th>
             </tr>
@@ -33,9 +34,10 @@
         <% end %>
         </tbody>
           <table class="table table-hover table-inveres">
-          <thead>
+          <thead class="table-active">
             <tr>
               <th><%= link_to "がんばったこと一覧", my_ganbatta_attempts_path %></th>
+              <th></th>
               <th></th>
               <th></th>
             </tr>

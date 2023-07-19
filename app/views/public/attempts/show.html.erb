@@ -9,7 +9,7 @@
     <% end %>
   </ul>
   <% end %>
-<div class="container col-8">
+<div class="container col-6">
   <h3>取り組みリスト確認</h3>
   <table class="table">
     <tbody>
@@ -30,6 +30,7 @@
       </tr>
     </tbody>
   </table>
+  <div class="text-center" >
   <% unless current_user == @attempt.user %><!--投稿した人間にはいいねを表示しない-->
     <% if @attempt.favorited_by?(current_user) %><!--投稿へいいねの表示-->
       <p>
@@ -53,7 +54,6 @@
   <div>
     <p>コメント件数：<%= @attempt.speeches.count %></p>
     <% @attempt.speeches.each do |speech| %>
-  
     <div class="d-flex">
       <div class="mr-3"><!--右に３あける-->
         <%= speech.user.name %>
@@ -80,4 +80,5 @@
       <% end %>
     </div>
   <% end %>
+  </div>
 </div>

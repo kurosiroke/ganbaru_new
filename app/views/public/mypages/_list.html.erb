@@ -8,39 +8,36 @@
     <% end %>
   </ul>
   <% end %>
-<table class="table">
-  <thead>
-    <tr>
-      <th><%= user.name %></th>
-    </tr>
-    <tr>
-      <th><%= user. profile%></th>
-    </tr>
-    <tr>
-      <th><%= link_to "お気に入り", favorites_attempts_path %></th>
-    </tr>
-  </thead>
-</table>
-<div class="row">
-    <%= link_to  edit_profile_path(user), class: "btn btn-outline-success btn-default btn-sm btn-block" do %>
-      編集
-    <% end %>
-</div>
-<h5 class="mt-3">がんばること</h5>
-<%= form_with model: @attempt, url: attempts_path, method: :post do |f| %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= user.name %></th>
+      </tr>
+      <tr>
+        <th><%= user. profile%></th>
+      </tr>
+      <tr>
+        <th><%= link_to "お気に入り", favorites_attempts_path %></th>
+      </tr>
+    </thead>
+  </table>
+  <%= link_to "編集", edit_profile_path(user), class: "btn btn-outline-success btn-default btn-sm btn-block" %>
+
+  <h5 class="mt-3">がんばること</h5>
+  <%= form_with model: @attempt, url: attempts_path, method: :post do |f| %>
   <%= f.text_area :content %><br>
   <h5 class="form-group">タグ</h5>
-  <div class="row d-flex justify-content-start m-1">
+    <div class="row d-flex justify-content-start m-1">
     <% Tag.all.each do |tag| %>
       <div class="form-check form-check-inline flex flex-wrap">
         <%= f.check_box :tag_ids, { multiple: true }, tag.id, nil %>
         <%= f.label :tag_ids, tag.tag_type %>
       </div>
     <% end %>
-  </div>
-  <div>
+    </div>
+    <div>
     <%= f.hidden_field :is_published_flag, value: true %><!--投稿を表示か非表示かで、表示で固定し、隠して表示させる-->
-  </div>
-  <h6 class="text-danger">※不適切な投稿は予告なく削除されます。<br>ご理解ください。</h6>
-  <%= f.submit "投稿", class: "btn btn-success btn-default btn-sm btn-block" %>
-<% end %>
+    </div>
+    <h6 class="text-danger">※不適切な投稿は予告なく削除されます。<br>ご理解ください。</h6>
+    <%= f.submit "投稿", class: "btn btn-success btn-default btn-sm btn-block" %>
+  <% end %>
