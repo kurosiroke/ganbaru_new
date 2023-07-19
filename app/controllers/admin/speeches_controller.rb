@@ -1,6 +1,7 @@
 class Admin::SpeechesController < ApplicationController
   def index
       @speeches = Speech.all.order("created_at DESC").page(params[:page])
+      @users = User.all
   end
   
   def destroy

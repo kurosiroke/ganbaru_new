@@ -8,6 +8,7 @@
             <th>ID</th>
             <th>日時</th>
             <th>内容</th>
+            <th>投稿者</th>
             <th colspan="6"></th>
           </tr> 
         </thead>
@@ -17,6 +18,7 @@
                 <td><%= speech.id %></td>
                 <td><%= speech.created_at.strftime('%Y/%m/%d') %></td>
                 <td><%= speech.speech %></td>
+                <th><%= link_to speech.user.name,admin_user_path(speech.user.id) %></th>
                 <td colspan="3"></td>
                 <td>
                    <%= link_to "削除", admin_speech_path(speech.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか?" %>

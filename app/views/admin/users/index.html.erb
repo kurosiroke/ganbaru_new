@@ -21,7 +21,7 @@
                   <%= user.name %>
                   <% end %>
                 </td>
-                <td><%= user.profile %></td>
+                <td><%= link_to user.profile, admin_user_path(user.id) %></td>
                 <td>
                   <% if user.is_deleted == false %>
                   <div class="text-success">

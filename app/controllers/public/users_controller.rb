@@ -20,7 +20,7 @@ class Public::UsersController < ApplicationController
       @user.update!(is_deleted: true)
       reset_session
       redirect_to root_path
-  end
+    end
   
   private
   

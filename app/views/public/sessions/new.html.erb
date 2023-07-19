@@ -1,19 +1,33 @@
-<h2>ログイン</h2>
-
-<%= form_with model: @user, url: session_path(resource_name) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class='container'>
+  <div class="row mt-3"><!--本文とヘッダーとの間を開ける-->
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+    <h2>ログイン</h2>
+      <%= form_with model: @user, url: session_path(resource_name) do |f| %>
+      <div class="field">
+        <%= f.label :メールアドレス %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+    
+      <div class="field">
+        <%= f.label :パスワード %><br />
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+      
+      <h2 class="text-danger">※注意※</h2>
+      <h5 class="text-danger">不適切と判断される投稿が続く場合や悪質な利用と判断した場合、アカウントが削除されます。</h5>
+    
+      <div class="actions">
+        <%= f.submit "ログイン", class: 'btn btn-sm btn-primary' %>
+      </div><br>
+      <% end %>
+      <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-11">
+            <h6>会員登録がお済みでない方</h6>
+            <p>&emsp;&emsp;<%= link_to "こちら", new_registration_path(resource_name) %>　から新規登録を行ってください。</p>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>

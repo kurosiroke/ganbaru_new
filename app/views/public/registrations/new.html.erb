@@ -1,35 +1,44 @@
-<h2>新規登録</h2>
-
-<%= form_with model: @user, url: user_registration_path do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-  
-  <div class="field">
-    <%= f.label :ニックネーム %><br>
-    <%= f.text_field :name, autofocus: true %>
+<div class='container'>
+  <div class="row mt-3"><!--本文とヘッダーとの間を開ける-->
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+    <h2>新規登録</h2>
+    
+    <%= form_with model: @user, url: user_registration_path do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
+      
+      <div class="field">
+        <%= f.label :ニックネーム %><br>
+        <%= f.text_field :name, autofocus: true %>
+      </div>
+    
+      <div class="field">
+        <%= f.label :メールアドレス %><br />
+        <%= f.email_field :email %>
+      </div>
+     <div class="field">
+        <%= f.label :パスワード %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+    
+      <div class="field">
+        <%= f.label :パスワードの確認 %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+      <h2 class="text-danger">※注意※</h2>
+      <h5 class="text-danger">不適切と判断される投稿が続く場合や悪質な利用と判断した場合、アカウントが削除されます。</h5>
+      <div class="actions">
+        <%= f.submit "新規登録", class: 'btn btn-sm btn-success' %>
+      </div>
+      <% end %>
+      <div class="row">
+        <div class="col-8">
+          <h5>既に登録済みの方</h5>
+          <p>&emsp;&emsp;<%= link_to "こちら", new_session_path(resource_name) %>　からログインしてください</p>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワードの確認 %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-  <h2 class="text-danger">※注意※</h2>
-  <h5 class="text-danger">不適切と判断される投稿が続く場合や悪質な利用と判断した場合、アカウントが削除されます。</h5>
-  <div class="actions">
-    <%= f.submit "新規作成" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>
