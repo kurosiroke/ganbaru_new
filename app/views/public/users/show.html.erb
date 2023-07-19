@@ -1,7 +1,7 @@
-<div class='container'>
-  <div class="row mt-3"><!--本文とヘッダーとの間を開ける-->
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <h1 class="mb-3 px-3 mx-auto">投稿者</h1><!--中央寄せ-->
+<div class="container col-12">
+  <div class="row mt-1">
+    <div class="col-md-8 offset-md-1">
+    <h1>投稿者</h1>
       <table class="table">
         <thead>
           <tr>
@@ -14,9 +14,10 @@
       </table>
       <div class="px-3 mx-auto">
         <table class="table table-hover table-inveres">
-          <thead>
+          <thead class="table-active">
             <tr>
               <th><%= link_to "がんばること一覧", user_ganbaru_path(@user.id) %></th>
+              <th></th>
               <th></th>
             </tr>
           </thead>
@@ -37,9 +38,11 @@
           </tbody>
         </table>
         <table class="table table-hover table-inveres">
-          <thead>
+          <thead class="table-active">
             <tr>
               <th><%= link_to "がんばったこと一覧", user_ganbatta_path(@user.id) %></th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>

@@ -1,32 +1,32 @@
-<div class='container'>
-  <div class="row mt-3"><!--本文とヘッダーとの間を開ける-->
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <h1 class="mb-3 px-3 mx-auto"><%= @user.name %>さんのがんばる</h1><!--中央寄せ-->
-    </div>
-    <div class="px-3 mx-auto">
-      <table class="table table-hover table-inveres">
-        <thead>
+<div class="container col-12">
+  <div class="row mt-1">
+    <div class="col-md-8 offset-md-1">
+      <h1 class="mb-3 px-3 mx-auto"><%= @user.name %>さんのがんばる</h1><!--中央寄せ-->
+      <div class="px-3 mx-auto">
+        <table class="table table-hover table-inveres">
+          <thead class="table-active">
+            <tr>
+              <th>がんばること一覧</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @ganbarus.each do |attempt| %>
           <tr>
-            <th>がんばること一覧</th>
-            <th></th>
+            <td><%= attempt.created_at.strftime('%Y/%m/%d') %></td>
+            <td>
+              <%= link_to attempt_path(attempt.id) do %>
+              <%= attempt.content %>
+              <% end %>
+            </td>
+            <td>
+            <%= attempt.user.name %></td>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-        <% @ganbarus.each do |attempt| %>
-        <tr>
-          <td><%= attempt.created_at.strftime('%Y/%m/%d') %></td>
-          <td>
-            <%= link_to attempt_path(attempt.id) do %>
-            <%= attempt.content %>
-            <% end %>
-          </td>
-          <td>
-          <%= attempt.user.name %></td>
-          </td>
-        </tr>
-        <% end %>
-        </tbody>
-      </table>
+          <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

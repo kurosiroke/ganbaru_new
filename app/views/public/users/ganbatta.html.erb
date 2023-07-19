@@ -1,22 +1,33 @@
-     <table class="table table-hover table-inveres">
-        <thead>
-          <tr>
-            <th>がんばったこと一覧</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @ganbattas.each do |attempt| %>
-          <tr>
-            <td><%= attempt.created_at.strftime('%Y/%m/%d') %></td>
-            <td>
-              <%= link_to attempt_path(attempt.id) do %>
-              <%= attempt.content %>
-              <% end %>
-            </td>
-            <td>
-              <%= attempt.user.name %>
-            </td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
+<div class="container col-12">
+  <div class="row mt-1">
+    <div class="col-md-8 offset-md-1">
+      <h1 class="mb-3 px-3 mx-auto"><%= @user.name %>さんのがんばる</h1><!--中央寄せ-->
+      <div class="px-3 mx-auto">
+        <table class="table table-hover table-inveres">
+          <thead class="table-active">
+            <tr>
+              <th>がんばったこと一覧</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @ganbattas.each do |attempt| %>
+            <tr>
+              <td><%= attempt.created_at.strftime('%Y/%m/%d') %></td>
+              <td>
+                <%= link_to attempt_path(attempt.id) do %>
+                <%= attempt.content %>
+                <% end %>
+              </td>
+              <td>
+                <%= attempt.user.name %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
