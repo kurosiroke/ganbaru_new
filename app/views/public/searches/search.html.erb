@@ -15,19 +15,29 @@
           <%= user.name %>
         </div>
       <% end %>
-    <% else %>
-      <% @attempts.each do |attempt| %>
-        <div class="row">
-          <div class="col">
-            <%= link_to attempt.content,attempt_path(attempt.id) %>
-          </div>
-          <div class="col">
-            <% attempt.tags.each do |tag| %>
-              <%= link_to tag_path(keyword: tag.tag_type) do %>
-              <%= tag.tag_type %>
-              <% end %>
-            <% end %>
-          </div>
+      <% else %>
+        <table class="table table-hover table-inveres">
+          <thead class="table-active">
+            <tr>
+              <th>投稿内容</th>
+              <th>タグ</th>
+            </tr>
+          </thead>
+          <% @attempts.each do |attempt| %>
+          <tbody>
+            <tr>
+              <th>
+                <%= link_to attempt.content,attempt_path(attempt.id) %>
+              </th>
+              <th>
+                <% attempt.tags.each do |tag| %>
+                  <%= link_to tag_path(keyword: tag.tag_type) do %>
+                  <%= tag.tag_type %>
+                  <% end %>
+                <% end %>
+              </th>
+            </tr>
+          </tbody>
         </div>
       <% end %>
     <% end %>
