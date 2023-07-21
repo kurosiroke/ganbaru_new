@@ -15,12 +15,28 @@ class Public::AttemptsController < ApplicationController
         @users = User.all
         @attempt = Attempt.new #newを表示させるため
         @attempts = Attempt.published.ganbaru.order("created_at DESC").page(params[:page]).per(7) # がんばるりすと 新着順
+        #並び替え
+        if params[:latest]
+          @attempts = Attempt.latest
+        elsif params[:old]
+          @attempts = Attempt.old
+        else
+          @attempts = Attempt.all
+        end
     end
        
     def ganbatta
         @user = current_user
         @attempt = Attempt.new
         @attempts = Attempt.published.ganbatta.order("created_at DESC").page(params[:page]).per(7)# がんばったリスト 新着
+           #並び替え
+        if params[:latest]
+          @attempts = Attempt.latest
+        elsif params[:old]
+          @attempts = Attempt.old
+        else
+          @attempts = Attempt.all
+        end
     end
     
     def my_ganbaru

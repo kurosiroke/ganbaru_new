@@ -15,6 +15,12 @@ class Attempt < ApplicationRecord
   scope :published, -> {where(is_published_flag: true)}
   scope :unpublished, -> {where(is_published_flag: false)}
   
+  #並び替え
+  scope :latest, -> { order(created_at: :desc) }  #desc = 降順
+  scope :old, -> { order(created_at: :asc) }  #asc = 昇順
+  scope :most_favorited, -> { includes(:favorited_users)
+    .sort_by { |x| x.favorited_users.includes(:favorites).size }.reverse }
+  
   def self.search(keyword)
     where("facility_name LIKE ? or address LIKE ? or detailed_description LIKE ?", "%#{sanitize_sql_like(keyword)}%", "%#{sanitize_sql_like(keyword)}%", "%#{sanitize_sql_like(keyword)}%")
   end
