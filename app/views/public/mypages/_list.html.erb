@@ -1,12 +1,15 @@
   <% if @attempt.errors.any? %>
-  <h3>
-    <%= @attempt.errors.count %>errors prohibited this obj from being saved:
-  </h3>
   <ul>
     <% @attempt.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>
+  <% end %>
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: name %>
+  <% end %>
+  <% if @errormessage %>
+    <%= @errormessage %>
   <% end %>
   <table class="table">
     <thead>
@@ -39,5 +42,6 @@
     <%= f.hidden_field :is_published_flag, value: true %><!--投稿を表示か非表示かで、表示で固定し、隠して表示させる-->
     </div>
     <h6 class="text-danger">※不適切な投稿は予告なく削除されます。<br>ご理解ください。</h6>
+    
     <%= f.submit "投稿", class: "btn btn-success btn-default btn-sm btn-block" %>
   <% end %>

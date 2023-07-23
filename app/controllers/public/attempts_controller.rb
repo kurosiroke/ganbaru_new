@@ -63,15 +63,28 @@ class Public::AttemptsController < ApplicationController
         @user = current_user
         @attempt = current_user.attempts.build(attempt_params) # actionの指定と保存を行う
         @attempt.part = 'ganbaru' #newで作成時はpartをがんばるに指定
+        if attempt_params[:tag_ids].nil?
+           @errormessage = "タグをチェックしてください。"
+#           redirect_to mypage_path(current_user)
+           attempt = @user.attempts
+           @favorite = attempt.connection
+           @ganbarus = current_user.attempts.ganbaru.order('id DESC').limit(3)
+           @ganbattas = current_user.attempts.ganbatta.order('id DESC').limit(3) 
+          render "public/mypages/show"
+        else
         if @attempt.save
-           flash[:notice] = "投稿されました."
+           flash[:notice] = nil
+           flash[:notice] = "投稿されました。"
            redirect_to my_ganbaru_attempts_path
         else
+          flash[:notice] = nil
+          flash[:notice] = "がんばることを入力してください。"
           attempt = @user.attempts
           @favorite = attempt.connection
           @ganbarus = current_user.attempts.ganbaru.order('id DESC').limit(3)
           @ganbattas = current_user.attempts.ganbatta.order('id DESC').limit(3) 
           render "public/mypages/show"
+        end
         end
     end
     

@@ -6,6 +6,20 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+ja:
+  activerecord:
+    models:
+    　attempt : 取り組み
+    attributes:
+      attempt:
+        content: がんばること
+    errors:
+      models:
+        attempt:
+          attributes:
+            content:
+              format: '%{message}'
+              blank: は１文字以上入力してください。
   date:
     abbr_day_names:
     - 日
