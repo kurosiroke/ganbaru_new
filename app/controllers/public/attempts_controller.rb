@@ -60,12 +60,21 @@ class Public::AttemptsController < ApplicationController
     end
     
     def create
+        flash[:notice] = nil #リセットするため
+        @errormessage = "" #リセットするため
         @user = current_user
         @attempt = current_user.attempts.build(attempt_params) # actionの指定と保存を行う
         @attempt.part = 'ganbaru' #newで作成時はpartをがんばるに指定
-        if attempt_params[:tag_ids].nil?
+        if attempt_params[:tag_ids].nil? && @attempt.invalid? #タグとattemptが空の場合の分類
            @errormessage = "タグをチェックしてください。"
-#           redirect_to mypage_path(current_user)
+           flash[:notice] = "がんばることを入力してください。"
+           attempt = @user.attempts
+           @favorite = attempt.connection
+           @ganbarus = current_user.attempts.ganbaru.order('id DESC').limit(3)
+           @ganbattas = current_user.attempts.ganbatta.order('id DESC').limit(3) 
+          render "public/mypages/show"
+        elsif attempt_params[:tag_ids].nil?
+           @errormessage = "タグをチェックしてください。"
            attempt = @user.attempts
            @favorite = attempt.connection
            @ganbarus = current_user.attempts.ganbaru.order('id DESC').limit(3)
@@ -73,11 +82,9 @@ class Public::AttemptsController < ApplicationController
           render "public/mypages/show"
         else
         if @attempt.save
-           flash[:notice] = nil
            flash[:notice] = "投稿されました。"
            redirect_to my_ganbaru_attempts_path
         else
-          flash[:notice] = nil
           flash[:notice] = "がんばることを入力してください。"
           attempt = @user.attempts
           @favorite = attempt.connection

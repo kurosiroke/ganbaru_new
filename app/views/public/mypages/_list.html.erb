@@ -1,13 +1,8 @@
-  <% if @attempt.errors.any? %>
-  <ul>
-    <% @attempt.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-  <% end %>
+<% if flash %>
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, class: name %>
   <% end %>
+<% end %>
   <% if @errormessage %>
     <%= @errormessage %>
   <% end %>

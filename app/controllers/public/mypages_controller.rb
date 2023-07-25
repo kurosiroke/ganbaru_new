@@ -3,6 +3,7 @@ class Public::MypagesController < ApplicationController
     #before_action :current_user, only: [:edit, :update]
 
     def show
+        flash[:notice] = nil #リセットするため
         @user = User.find(params[:id])
         @attempt = Attempt.new
         attempt = @user.attempts
