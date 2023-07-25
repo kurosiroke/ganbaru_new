@@ -29,7 +29,7 @@
     <% Tag.all.each do |tag| %>
       <div class="form-check form-check-inline flex flex-wrap">
         <%= f.check_box :tag_ids, { multiple: true }, tag.id, nil %>
-        <%= f.label :tag_ids, tag.tag_type %>
+        <%= f.label "tag_ids_#{tag.id}", tag.tag_type %>
       </div>
     <% end %>
     </div>

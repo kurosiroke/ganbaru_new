@@ -1,36 +1,36 @@
 <table>
-<tbody>
-  <% @attempts.each do |attempt| %>
-    <tr>
-      <td><%= attempt.created_at.strftime('%Y/%m/%d') %></td>
-      <td>
-        <%= link_to attempt_path(attempt.id) do %>
-        <%= attempt.content %>
-        <% end %>
-      </td>
-      <td>
-        <% attempt.tags.each do |tag| %>
-          <%= link_to search_path(keyword: tag.tag_type) do %>
-          <%= tag.tag_type %>
+  <tbody>
+    <% @attempts.each do |attempt| %>
+      <tr>
+        <td><%= attempt.created_at.strftime('%Y/%m/%d') %></td>
+        <td>
+          <%= link_to attempt_path(attempt.id) do %>
+          <%= attempt.content %>
           <% end %>
-        <% end %>
-      </td>
-      <td>
-        <%= link_to attempt.user do %>
-        <%= attempt.user.name %></td>
-        <% end %>
-      </td>
-      <td> 
-        <% if attempt.user == current_user %>
-        <%= link_to "編集", edit_attempt_path(attempt.id), class: 'btn btn-sm btn-success' %>
-        <% end %>
-      </td>
-      <td> 
-        <% if attempt.user == current_user %>
-        <%= link_to "削除", attempt_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %> 
- </tbody>
+        </td>
+        <td>
+          <% attempt.tags.each do |tag| %>
+            <%= link_to search_path(keyword: tag.tag_type) do %>
+            <%= tag.tag_type %>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to attempt.user do %>
+          <%= attempt.user.name %></td>
+          <% end %>
+        </td>
+        <td> 
+          <% if attempt.user == current_user %>
+          <%= link_to "編集", edit_attempt_path(attempt.id), class: 'btn btn-sm btn-success' %>
+          <% end %>
+        </td>
+        <td> 
+          <% if attempt.user == current_user %>
+          <%= link_to "削除", attempt_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
+          <% end %>
+        </td>
+      </tr>
+     <% end %> 
+    </tbody>
  </table>
