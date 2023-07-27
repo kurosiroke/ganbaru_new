@@ -21,21 +21,33 @@
             <tr>
               <th>投稿内容</th>
               <th>タグ</th>
+              <th colspan="6"></th>
             </tr>
           </thead>
           <% @attempts.each do |attempt| %>
           <tbody>
             <tr>
-              <th>
+              <td>
                 <%= link_to attempt.content,attempt_path(attempt.id) %>
-              </th>
-              <th>
+              </td>
+              <td>
                 <% attempt.tags.each do |tag| %>
                   <%= link_to tag_path(keyword: tag.tag_type) do %>
                   <%= tag.tag_type %>
                   <% end %>
                 <% end %>
-              </th>
+              </td>
+              <td>
+                <% if attempt.user == current_user %>
+                <%= link_to "編集", edit_attempt_path(attempt.id), class: 'btn btn-sm btn-success' %>
+                <% end %>
+              </td>
+              <td>
+                <% if attempt.user == current_user %>
+                <%= link_to "削除", attempt_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
+                <% end %>
+              </td>
+              <td colspan="3"></td>
             </tr>
           </tbody>
         </div>
