@@ -53,6 +53,7 @@ class Public::AttemptsController < ApplicationController
     end 
     
     def edit
+        is_matching_login_user#アクセス制限
         @attempt = Attempt.find(params[:id])
     end
     
@@ -66,7 +67,7 @@ class Public::AttemptsController < ApplicationController
            @errormessage = "タグをチェックしてください。"
            flash[:notice] = "がんばることを入力してください。"
            attempt = @user.attempts
-           @favorite = attempt.connection
+           @favorite = attempt.connection #お気に入り
            @ganbarus = current_user.attempts.ganbaru.order('id DESC').limit(3)
            @ganbattas = current_user.attempts.ganbatta.order('id DESC').limit(3) 
           render "public/mypages/show"
@@ -93,6 +94,7 @@ class Public::AttemptsController < ApplicationController
     end
     
     def update
+        is_matching_login_user#アクセス制限
         @attempt = Attempt.find(params[:id])
         @attempt.update(attempt_params)
         redirect_to mypage_path(@attempt.user_id)
@@ -109,5 +111,11 @@ class Public::AttemptsController < ApplicationController
     def attempt_params
         params.require(:attempt).permit(:content, :part, :is_published_flag, tag_ids: [])
     end
- 
+    
+    def is_matching_login_user #アクセス制限
+      attempt = Attempt.find(params[:id])
+      unless attempt.id == current_user.id
+        redirect_to attempt_path
+      end
+    end
 end
