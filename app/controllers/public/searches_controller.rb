@@ -5,7 +5,8 @@ class Public::SearchesController < ApplicationController
     if @range == "User"
       @users = User.looks(params[:search], params[:word])
     else
-      @attempts = Attempt.looks(params[:search], params[:word])
+      @attempts =  Attempt.published.all.looks(params[:search], params[:word])
+      
     end
     end
 end

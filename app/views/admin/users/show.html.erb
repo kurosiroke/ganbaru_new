@@ -29,7 +29,13 @@
           </tr>
         </thead>
       </table>
-      <div class="text-centerz"><%= link_to "編集する", edit_admin_user_path, class: 'btn btn-sm btn-success' %></div>
+      <table>
+        <tr>
+          <th><%= link_to "編集する", edit_admin_user_path, class: 'btn btn-sm btn-success' %></th><br>
+          <th><%= link_to "利用者管理へ移動", admin_users_path, class: 'btn btn-sm btn-primary' %></th>
+          <th><%= link_to "投稿リストへ移動", admin_attempts_path, class: 'btn btn-sm btn-info' %></th>
+        </tr>
+     </table>
     </div>
   </div>
 </div>

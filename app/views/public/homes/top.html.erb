@@ -18,13 +18,21 @@
       <tr>
         <td><%= attempt.created_at.strftime('%Y/%m/%d') %></td>
         <td>
-          <%= link_to attempt_path(attempt.id) do %>
-          <%= attempt.content %>
+          <% if user_signed_in? %>
+            <%= link_to attempt_path(attempt.id) do %>
+            <%= attempt.content %>
+            <% end %>
+          <% else %>
+            <%= attempt.content %>
           <% end %>
         </td>
         <td>
-          <%= link_to user_path(attempt.user.id) do %>
-          <%= attempt.user.name %>
+          <% if user_signed_in? %>
+            <%= link_to user_path(attempt.user.id) do %>
+            <%= attempt.user.name %>
+            <% end %>
+          <% else %>
+            <%= attempt.user.name %>
           <% end %>
         </td>
       </tr>
@@ -53,13 +61,21 @@
       <tr>
         <td><%= attempt.created_at.strftime('%Y/%m/%d') %></td>
         <td>
-          <%= link_to attempt_path(attempt.id) do %>
-          <%= attempt.content %>
+          <% if user_signed_in? %>
+            <%= link_to attempt_path(attempt.id) do %>
+            <%= attempt.content %>
+            <% end %>
+          <% else %>
+            <%= attempt.content %>
           <% end %>
         </td>
         <td>
-          <%= link_to user_path(attempt.user.id) do %>
-          <%= attempt.user.name %>
+          <% if user_signed_in? %>
+            <%= link_to user_path(attempt.user.id) do %>
+            <%= attempt.user.name %>
+            <% end %>
+          <% else %>
+            <%= attempt.user.name %>
           <% end %>
         </td>
       </tr>

@@ -40,7 +40,7 @@ Rails.application.routes.draw do
         resources :speeches, only: [:create] #コメント
     end
   end
-  resources :mypages, only: [:show] do# ユーザー
+  resources :mypages, only: [:show, :update, :destroy] do# ユーザー
     collection do
         get :ganbaru
         get :ganbatta

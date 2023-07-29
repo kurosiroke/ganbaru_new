@@ -13,6 +13,7 @@
               <th></th>
               <th></th>
               <th></th>
+              <th></th>
             </tr>
         </thead>
         <tbody>
@@ -24,11 +25,18 @@
             <%= attempt.content %>
             <% end %>
           </td>
+          <td>
+            <% if attempt.is_published_flag %>
+            公開
+            <% else %>
+            非公開
+            <% end %>
+          </td>
           <td> 
             <%= link_to "編集", edit_attempt_path(attempt.id), class: 'btn btn-sm btn-success' %>
           </td>
           <td> 
-            <%= link_to "削除", attempt_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
+            <%= link_to "削除", mypage_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
           </td>
         </tr>
         <% end %>
@@ -37,6 +45,7 @@
           <thead class="table-active">
             <tr>
               <th><%= link_to "がんばったこと一覧", my_ganbatta_attempts_path %></th>
+              <th></th>
               <th></th>
               <th></th>
               <th></th>
@@ -51,11 +60,18 @@
                 <%= attempt.content %>
                 <% end %>
               </td>
+              <td>
+                <% if attempt.is_published_flag %>
+                公開
+                <% else %>
+                非公開
+                <% end %>
+              </td>
               <td> 
                 <%= link_to "編集", edit_attempt_path(attempt.id), class: 'btn btn-sm btn-success' %>
               </td>
               <td> 
-                <%= link_to "削除", attempt_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
+                <%= link_to "削除", mypage_path(attempt.id), method: :delete,  "data-confirm" => "本当に削除しますか？" ,class: 'btn btn-sm btn-danger' %>
               </td>
             </tr>
           <% end %>

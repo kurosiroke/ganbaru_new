@@ -26,9 +26,12 @@
           </th>
         </tr>
       </table>
-      <div class="text-center">
-        <%= f.submit "変更を保存", class: 'btn btn-sm btn-success' %>
-      </div>
+      <table class="text-center">
+        <tr>
+          <th><%= f.submit "変更を保存", class: 'btn btn-sm btn-success' %></th><br>
+          <th><%= link_to "戻る", admin_users_path, class: 'btn btn-sm btn-primary' %></th>
+        </tr>
+      </table>
       <% end %>
     </div>
   </div>

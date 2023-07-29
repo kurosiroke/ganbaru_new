@@ -18,6 +18,12 @@ class Public::MypagesController < ApplicationController
     def ganbaru_index
     end
     
+    def destroy
+        attempt = Attempt.find(params[:id])
+        attempt.destroy
+        redirect_to mypage_path(attempt.user_id)
+    end
+    
     private
     
     def user_params

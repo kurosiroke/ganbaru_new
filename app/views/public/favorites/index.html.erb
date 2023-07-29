@@ -11,7 +11,11 @@
         <tbody>
         <% @favorites.each do |favorite| %>
           <tr>
-           <td><%= link_to favorite.attempt.content, attempts_path %></td>
+           <td>
+            <%= link_to attempt_path(favorite.attempt_id) do %>
+            <%= favorite.attempt.content %>
+            <% end %>
+           </td>
           </tr>
         </tbody>
       <% end %>

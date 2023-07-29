@@ -1,8 +1,8 @@
 class Public::AttemptsController < ApplicationController
     def search
-        @attempts = Attempt.all
+        @attempts = Attempt.published.all
         if params[:keyword].present?
-            @attempts = Attempt.left_joins(:tags).where("tags.tag_type LIKE?", "%#{params[:keyword]}%")
+          @attempts = Attempt.published.all.left_joins(:tags).where("tags.tag_type LIKE?", "%#{params[:keyword]}%")
         end
     end
     
@@ -14,33 +14,30 @@ class Public::AttemptsController < ApplicationController
         @user = current_user
         @users = User.all
         @attempt = Attempt.new #newを表示させるため
-        # @attempts = Attempt.published.ganbaru.order("created_at DESC").page(params[:page]).per(7) # がんばるりすと 新着順
         #並び替え
         if params[:latest]
-          @attempts = Attempt.latest.page(params[:page]).per(7)
+          @attempts = Attempt.published.ganbaru.latest.page(params[:page]).per(7)
         elsif params[:old]
-          @attempts = Attempt.old.page(params[:page]).per(7)
+          @attempts = Attempt.published.ganbaru.old.page(params[:page]).per(7)
         else
-          @attempts = Attempt.all.page(params[:page]).per(7)
+          @attempts = Attempt.published.ganbaru.all.page(params[:page]).per(7)
         end
     end
        
     def ganbatta
         @user = current_user
         @attempt = Attempt.new
-        @attempts = Attempt.published.ganbatta.order("created_at DESC").page(params[:page]).per(7)# がんばったリスト 新着
            #並び替え
         if params[:latest]
-          @attempts = Attempt.latest.page(params[:page]).per(7)
+          @attempts = Attempt.published.ganbatta.latest.page(params[:page]).per(7)
         elsif params[:old]
-          @attempts = Attempt.old.page(params[:page]).per(7)
+          @attempts = Attempt.published.ganbatta.old.page(params[:page]).per(7)
         else
-          @attempts = Attempt.all.page(params[:page]).per(7)
+          @attempts = Attempt.published.ganbatta.all.page(params[:page]).per(7)
         end
     end
     
     def my_ganbaru
-        #@attempt = Attempt.all.ganbaru.order("created_at DESC").limit(8) ←すべてのユーザーを表示する。
         @attempts = current_user.attempts.ganbaru.order('id DESC').page(params[:page]) #ログインしているユーザーのみを表示させる
         @attempt = Attempt.new
     end
@@ -83,7 +80,7 @@ class Public::AttemptsController < ApplicationController
         else
         if @attempt.save
            flash[:notice] = "投稿されました。"
-           redirect_to my_ganbaru_attempts_path
+           redirect_to mypage_path(@attempt.user_id)
         else
           flash[:notice] = "がんばることを入力してください。"
           attempt = @user.attempts
@@ -96,11 +93,9 @@ class Public::AttemptsController < ApplicationController
     end
     
     def update
-        #byebug
         @attempt = Attempt.find(params[:id])
         @attempt.update(attempt_params)
-        
-        redirect_to attempts_path
+        redirect_to mypage_path(@attempt.user_id)
     end
     
     def destroy
