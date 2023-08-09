@@ -9,3 +9,11 @@ Admin.create!(
   email: "test@test",## 任意のメールアドレス,
   password: "123123"## 任意のパスワード
   )
+
+User.create!(
+  [
+    {email: "t@t", name: "鯛", profile: "鯛焼きです", password: "123123"},
+    {email: "a@a", name: "鮎", profile: "魚で占ったから鮎", password: "123123"},
+    {email: "m@m", name: "鮪", profile: "魚の代表とよく聞きます", password: "123123"}
+  ]
+)
