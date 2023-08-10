@@ -25,9 +25,7 @@ Attempt.create!(
     {user_id:2, content: "掃除を頑張る！", is_published_flag:true, part:0},
     {user_id:2, content: "掃除を頑張った！", is_published_flag:true, part:1}, 
     {user_id:3, content: "勉強を頑張る！", is_published_flag:true, part:0},
-    {user_id:3, content: "勉強を頑張った！", is_published_flag:true, part:1},
-    {user_id:4, content: "本を一冊読めるよう頑張る！", is_published_flag:true, part:0},
-    {user_id:4, content: "読書できるよう時間調整を頑張った！", is_published_flag:true, part:1} 
+    {user_id:3, content: "勉強を頑張った！", is_published_flag:true, part:1}
   ]
 )
 
@@ -46,8 +44,6 @@ AttemptAndTag.create!(
     {attempt_id: 2, tag_id: 2},
     {attempt_id: 2, tag_id: 2},
     {attempt_id: 3, tag_id: 3},
-    {attempt_id: 3, tag_id: 3},
-    {attempt_id: 4, tag_id: 1},
-    {attempt_id: 4, tag_id: 1}
+    {attempt_id: 3, tag_id: 3}
   ]
 )
