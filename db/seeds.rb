@@ -39,15 +39,25 @@ Tag.create!(
   ]
 )
 
-5.times do |n|
   AttemptAndTag.create!(
     [
       {attempt_id: 1, tag_id: 1},
-      {attempt_id: 1, tag_id: 1},
-      {attempt_id: 2, tag_id: 2},
       {attempt_id: 2, tag_id: 2},
       {attempt_id: 3, tag_id: 3},
-      {attempt_id: 3, tag_id: 3}
+      {attempt_id: 4, tag_id: 1},
+      {attempt_id: 5, tag_id: 2},
+      {attempt_id: 6, tag_id: 3},
+      {attempt_id: 7, tag_id: 1}
     ]
   )
-end
+
+Speech.create!(
+  [
+    {user_id:2, attempt_id:1, speech:"test",},
+    {user_id:2, attempt_id:2, speech:"test",},
+    {user_id:3, attempt_id:3, speech:"test",},
+    {user_id:3, attempt_id:4, speech:"test",},
+    {user_id:1, attempt_id:5, speech:"test",},
+    {user_id:1, attempt_id:6, speech:"test",},
+  ]  
+)
