@@ -17,17 +17,17 @@
           <th colspan="6"></th>
         </tr>
       </thead>
-      <% @users.each do |user| %>
       <tbody>
-          <tr>
-            <td>
-              <%= link_to user.name,user_path(user.id) %>
-            </td>
-            <td colspan="6"></td>
-          </tr>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= link_to user.name,user_path(user.id) %>
+          </td>
+          <td colspan="6"></td>
+        </tr>
+      <% end %>
       </tbody>
     </table>
-    <% end %>
     <% else %>
       <table class="table table-hover table-inveres">
         <thead class="table-active">
@@ -37,8 +37,8 @@
             <th colspan="6"></th>
           </tr>
         </thead>
-        <% @attempts.each do |attempt| %>
         <tbody>
+        <% @attempts.each do |attempt| %>
           <tr>
             <td>
               <%= link_to attempt.content,attempt_path(attempt.id) %>
@@ -62,8 +62,8 @@
             </td>
             <td colspan="3"></td>
           </tr>
-        </tbody>
         <% end %>
+        </tbody>
       </table>
     <% end %>
   <% end %>
