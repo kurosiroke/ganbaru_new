@@ -5,3 +5,5 @@ class Admin::HomesControllerTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
 end
+
+# test
