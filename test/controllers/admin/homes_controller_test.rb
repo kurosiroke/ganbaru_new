@@ -6,4 +6,3 @@ class Admin::HomesControllerTest < ActionDispatch::IntegrationTest
   # end
 end
 
-# test
