@@ -114,7 +114,7 @@ class Public::AttemptsController < ApplicationController
     
     def is_matching_login_user #アクセス制限
       attempt = Attempt.find(params[:id])
-      unless attempt.id == current_user.id
+      unless attempt.user_id == current_user.id
         redirect_to attempt_path
       end
     end
