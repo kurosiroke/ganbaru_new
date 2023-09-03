@@ -12,12 +12,6 @@ class Public::MypagesController < ApplicationController
         @ganbattas = current_user.attempts.ganbatta.order('id DESC').limit(3) #ログインしているユーザーの一覧
     end 
     
-    def ganbaru_index
-    end
-    
-    def ganbaru_index
-    end
-    
     def destroy
         attempt = Attempt.find(params[:id])
         attempt.destroy
