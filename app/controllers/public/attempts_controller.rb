@@ -50,6 +50,9 @@ class Public::AttemptsController < ApplicationController
     def show
         @attempt = Attempt.find(params[:id]) #ユーザーの投稿のshowを表示する
         @speech = Speech.new
+        if @attempt.is_published_flag == false
+         redirect_to attempts_path  
+        end
     end 
     
     def edit

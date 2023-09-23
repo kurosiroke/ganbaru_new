@@ -1,4 +1,6 @@
 class Admin::SpeechesController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
       @speeches = Speech.all.order("created_at DESC").page(params[:page])
       @users = User.all

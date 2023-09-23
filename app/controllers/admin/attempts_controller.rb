@@ -1,4 +1,6 @@
 class Admin::AttemptsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
       @attempts = Attempt.all.order("created_at DESC").page(params[:page])
   end
@@ -14,5 +16,5 @@ class Admin::AttemptsController < ApplicationController
   def attempt_params
     params.require(:attempt).permit(:content)
   end
-    
+
 end
