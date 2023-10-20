@@ -1,6 +1,6 @@
 class Public::AttemptsController < ApplicationController
     def search
-        @attempts = Attempt.published.all
+        @attempts = Attempt.published.all #投稿されたリストのすべて
         if params[:keyword].present?
           @attempts = Attempt.published.all.left_joins(:tags).where("tags.tag_type LIKE?", "%#{params[:keyword]}%")
         end
@@ -10,7 +10,7 @@ class Public::AttemptsController < ApplicationController
         @attempts = Attempt.published.all.order("created_at DESC").page(params[:page])
     end
     
-    def ganbaru
+    def ganbaru #がんばるリスト
         @user = current_user
         @users = User.all
         @attempt = Attempt.new #newを表示させるため
@@ -24,7 +24,7 @@ class Public::AttemptsController < ApplicationController
         end
     end
        
-    def ganbatta
+    def ganbatta #がんばったリスト
         @user = current_user
         @attempt = Attempt.new
            #並び替え

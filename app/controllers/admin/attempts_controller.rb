@@ -1,8 +1,8 @@
 class Admin::AttemptsController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin! 
   
   def index
-      @attempts = Attempt.all.order("created_at DESC").page(params[:page])
+      @attempts = Attempt.all.order("created_at DESC").page(params[:page]) #投稿
   end
   
   def destroy
