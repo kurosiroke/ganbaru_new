@@ -7,7 +7,7 @@ class Public::AttemptsController < ApplicationController
     end
     
     def index
-        @attempts = Attempt.published.all.order("created_at DESC").page(params[:page])
+        @attempts = Attempt.published.all.order("created_at DESC").page(params[:page]) #投稿の全てを新しい順に表示
     end
     
     def ganbaru #がんばるリスト
@@ -48,9 +48,9 @@ class Public::AttemptsController < ApplicationController
     end
     
     def show
-        @attempt = Attempt.find(params[:id]) #ユーザーの投稿のshowを表示する
+        @attempt = Attempt.find(params[:id]) #投稿のshowを表示する
         @speech = Speech.new
-        if @attempt.is_published_flag == false
+        if @attempt.is_published_flag == false #投稿記事の公開・非公開機能
          redirect_to attempts_path  
         end
     end 

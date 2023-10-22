@@ -21,7 +21,7 @@ class Attempt < ApplicationRecord
   scope :most_favorited, -> { includes(:favorited_users)
     .sort_by { |x| x.favorited_users.includes(:favorites).size }.reverse }
   
-  def self.search(keyword)
+  def self.search(keyword) #キーワード検索
     where("facility_name LIKE ? or address LIKE ? or detailed_description LIKE ?", "%#{sanitize_sql_like(keyword)}%", "%#{sanitize_sql_like(keyword)}%", "%#{sanitize_sql_like(keyword)}%")
   end
   
@@ -39,7 +39,7 @@ class Attempt < ApplicationRecord
     end
   end
   
-  def favorited_by?(user)
+  def favorited_by?(user) #いいね機能
     favorites.exists?(user_id)
   end
   

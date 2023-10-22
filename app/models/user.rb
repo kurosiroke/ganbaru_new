@@ -8,13 +8,13 @@ class User < ApplicationRecord
   has_many :speeches, dependent: :destroy #コメントの設定。削除されたら削除
   has_many :favorites, dependent: :destroy #お気に入り　削除されたら
   
-  validates :name, presence: true, uniqueness: true, length: { maximum: 10 }
+  validates :name, presence: true, uniqueness: true, length: { maximum: 10 } #名前の文字数
    
-  def active_for_authentication? #退会
+  def active_for_authentication? #退会機能
     super && (is_deleted == false)
   end
   
-  def self.guest
+  def self.guest #ゲストログイン設定
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       # user.confirmed_at = Time.now
@@ -23,7 +23,7 @@ class User < ApplicationRecord
     end
   end
   
-  def self.looks(search, word)
+  def self.looks(search, word) #ユーザーの検索
     if search == "perfect_match"
       @user = User.where("name LIKE?", "#{word}")
     elsif search == "forward_match"

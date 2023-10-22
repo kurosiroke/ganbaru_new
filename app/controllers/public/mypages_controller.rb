@@ -1,6 +1,4 @@
 class Public::MypagesController < ApplicationController
-    
-    #before_action :current_user, only: [:edit, :update]
 
     def show
         flash[:notice] = nil #リセットするため
@@ -8,8 +6,10 @@ class Public::MypagesController < ApplicationController
         @attempt = Attempt.new
         attempt = @user.attempts
         @favorite = attempt.connection #お気に入りの表示に使う
-        @ganbarus = current_user.attempts.ganbaru.order('id DESC').limit(3)        # ASCだと古い順でDESCで新着順です。
-        @ganbattas = current_user.attempts.ganbatta.order('id DESC').limit(3) #ログインしているユーザーの一覧
+        @ganbarus = current_user.attempts.ganbaru.order('id DESC').limit(3)
+        @ganbattas = current_user.attempts.ganbatta.order('id DESC').limit(3) 
+        # ASCだと古い順でDESCで新着順
+        #ログインしているユーザーの一覧
     end 
     
     def destroy

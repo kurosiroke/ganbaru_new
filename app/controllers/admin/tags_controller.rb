@@ -37,8 +37,6 @@ class Admin::TagsController < ApplicationController
     redirect_to admin_tags_path, notice: "タグを削除しました。"
   end
 
-  
-  
   private
   
   

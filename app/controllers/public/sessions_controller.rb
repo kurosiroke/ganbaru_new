@@ -38,7 +38,7 @@ class Public::SessionsController < Devise::SessionsController
       # メールアドレスが正しいかを確認↓
     return if !@user
      #パスワード間違ってたらはじく↓
-    if @user.valid_password?(params[:user][:password]) && (@user.is_deleted)
+    if @user.valid_password?(params[:user][:password]) && (@user.is_deleted)#←退会しているかどうかも確認
     # ↓
     redirect_to new_user_registration_path
     

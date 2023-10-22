@@ -13,7 +13,7 @@ class Public::ProfilesController < ApplicationController
   
   def withdrawal
       @user = current_user
-      @user.update!(is_deleted: true)
+      @user.update!(is_deleted: true) #退会機能を論理削除
       reset_session
       redirect_to root_path
   end

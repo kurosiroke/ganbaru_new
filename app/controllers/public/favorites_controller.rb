@@ -1,7 +1,7 @@
 class Public::FavoritesController < ApplicationController
  
   def index
-    @favorites = current_user.favorites
+    @favorites = current_user.favorites #お気に入り
   end
 
   def create
